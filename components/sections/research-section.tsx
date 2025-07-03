@@ -20,7 +20,6 @@ const researchWork = [
     title: "Analysis and Comparison of Different Frontend Frameworks",
     authors: "Suryaansh Rathinam",
     conference: "ATIS 2022 Conference",
-    conferenceLink: "https://atis2022.com/",
     publication: "Springer's CCIS Series (Volume 1804)",
     publicationLink: "https://link.springer.com/chapter/10.1007/978-981-99-2264-2_19",
     pdf: "/SuryaanshRathinam_ComparisonOfFrontendFrameworks.pdf",

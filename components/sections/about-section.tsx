@@ -5,7 +5,7 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Calendar } from "lucide-react"
-
+import about from '@/assets/about.png'
 export function AboutSection() {
   const sectionRef = useRef<HTMLElement>(null)
 
@@ -51,7 +51,7 @@ export function AboutSection() {
             <div className="relative">
               <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-2xl overflow-hidden glass-morphism p-4">
                 <Image
-                  src="/placeholder.svg?height=400&width=400"
+                  src={about}
                   alt="Suryaansh Rathinam - About"
                   width={400}
                   height={400}
@@ -78,10 +78,6 @@ export function AboutSection() {
                 My journey extends beyond development; I have delved into research in Artificial Intelligence and other
                 domains as well. I am currently working on solidifying and enhancing my knowledge in the field of LLMs,
                 and trying to keep up with the latest advancements in the AI space.
-              </p>
-              <p className="text-muted-foreground leading-relaxed">
-                I am also open to take up any freelance opportunities, and am on the search for internships for Summer
-                (May-Jul) 2025.
               </p>
             </div>
 

@@ -1,51 +1,75 @@
-"use client"
+"use client";
 
-import { useEffect, useRef } from "react"
-import Image from "next/image"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { GraduationCap, Calendar, Award } from "lucide-react"
-
+import { useEffect, useRef } from "react";
+import Image from "next/image";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { GraduationCap, Calendar, Award } from "lucide-react";
+import nus from '@/assets/nus.png'
+import manipal from '@/assets/manipal.jpg'
 const education = [
   {
     institution: "National University of Singapore",
     degree: "Masters of Computing: Artificial Intelligence Specialisation",
     duration: "2024-2025",
     gpa: "4.63 / 5",
-    logo: "/placeholder.svg?height=80&width=80",
-    description: "Specializing in AI with focus on machine learning, deep learning, and natural language processing.",
+    logo: nus,
+    description: (
+      <div>
+        Specializing in AI with focus on machine learning, deep learning, and
+        natural language processing. <br /> Teaching Assistant for{" "}
+        <a href="https://nusmods.com/courses/CS5224/cloud-computing" target="_blank">
+
+        <Badge
+          variant="secondary"
+          className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 text-blue-600 dark:text-blue-400"
+        >
+          Cloud Computing
+        </Badge>
+        </a>
+        and
+        <a href="https://nusmods.com/courses/CS3219/software-engineering-principles-and-patterns" target="_blank">
+        <Badge
+          variant="secondary"
+          className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 text-blue-600 dark:text-blue-400"
+        >
+          Software Engineering
+        </Badge>
+        </a>
+      </div>
+    ),
   },
   {
     institution: "Manipal Institute of Technology",
     degree: "Bachelor's of Technology: Computer Science",
     duration: "2020-2024",
     gpa: "9.47 / 10",
-    logo: "/placeholder.svg?height=80&width=80",
+    logo: manipal,
     description:
       "Comprehensive computer science education with strong foundation in algorithms, data structures, and software engineering.",
   },
-]
+];
 
 export function EducationSection() {
-  const sectionRef = useRef<HTMLElement>(null)
+  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("active")
+            entry.target.classList.add("active");
           }
-        })
+        });
       },
-      { threshold: 0.1 },
-    )
+      { threshold: 0.1 }
+    );
 
-    const elements = sectionRef.current?.querySelectorAll(".reveal")
-    elements?.forEach((el) => observer.observe(el))
+    const elements = sectionRef.current?.querySelectorAll(".reveal");
+    elements?.forEach((el) => observer.observe(el));
 
-    return () => observer.disconnect()
-  }, [])
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <section id="education" ref={sectionRef} className="section-padding">
@@ -79,7 +103,9 @@ export function EducationSection() {
                       <CardTitle className="text-xl group-hover:gradient-text transition-all duration-300">
                         {edu.institution}
                       </CardTitle>
-                      <p className="text-lg text-muted-foreground font-medium">{edu.degree}</p>
+                      <p className="text-lg text-muted-foreground font-medium">
+                        {edu.degree}
+                      </p>
                     </div>
 
                     <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
@@ -97,7 +123,9 @@ export function EducationSection() {
               </CardHeader>
 
               <CardContent>
-                <p className="text-muted-foreground leading-relaxed">{edu.description}</p>
+                <div className="text-muted-foreground leading-relaxed">
+                  {edu.description}
+                </div>
 
                 <div className="mt-4">
                   <Badge
@@ -114,5 +142,5 @@ export function EducationSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

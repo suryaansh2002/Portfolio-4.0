@@ -5,13 +5,13 @@ import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Github, Linkedin, Mail, Code, Calendar, MessageCircle } from "lucide-react"
-
+import profile from '@/assets/profile.jpg'
 const socialLinks = [
   {
     name: "GitHub",
     icon: Github,
     url: "https://github.com/suryaansh2002/",
-    description: "View my code repositories and open source contributions",
+    description: "View my code repositories",
     color: "hover:text-gray-900 dark:hover:text-white",
   },
   {
@@ -32,7 +32,7 @@ const socialLinks = [
     name: "LeetCode",
     icon: Code,
     url: "https://leetcode.com/suryaansh28/",
-    description: "Check out my coding practice and solutions",
+    description: "Check out my coding practice...",
     color: "hover:text-orange-500",
   },
 ]
@@ -81,7 +81,7 @@ export function ContactSection() {
                 <h3 className="text-2xl font-bold">Let's Connect!</h3>
                 <p className="text-muted-foreground leading-relaxed">
                   I'm currently open to new opportunities, freelance projects, and interesting collaborations. I'm
-                  particularly interested in internships for Summer 2025 (May-Jul) and projects involving AI/ML,
+                  particularly interested in projects involving AI/ML,
                   full-stack development, or research opportunities.
                 </p>
               </div>
@@ -126,7 +126,7 @@ export function ContactSection() {
                   <div className="text-center space-y-4">
                     <div className="w-32 h-32 mx-auto rounded-full overflow-hidden">
                       <Image
-                        src="/placeholder.svg?height=128&width=128"
+                        src={profile}
                         alt="Contact illustration"
                         width={128}
                         height={128}

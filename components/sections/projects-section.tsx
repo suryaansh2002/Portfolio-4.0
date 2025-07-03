@@ -3,10 +3,17 @@
 import { useState, useEffect, useRef } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
 import { Github, ExternalLink, Calendar, ChevronDown, ChevronUp } from "lucide-react"
 
 const projects = [
+{
+  title: "GMAIL Rag System",
+  date: "April 2025",
+  description:
+    "A full-stack AI application that enables users to query their Gmail content using natural language. Implements secure Gmail OAuth login, fetches emails and attachments, converts them into embeddings using sentence transformers, and stores them in Pinecone. Users can ask questions and receive contextually relevant answers powered by Ollama LLM. The system is architected with a FastAPI backend, Next.js frontend, and supports attachment processing (PDF, CSV, text).",
+  github: "https://github.com/suryaansh2002/multi-doc-chat-rag",
+  tags: ["Next.js", "React", "Tailwind CSS", "FastAPI", "Python", "Pinecone", "Ollama", "OAuth", "Email AI", "RAG", "Vector DB"],
+},
   {
     title: "Document and Video Q&A System",
     date: "Feb 2025",
@@ -14,7 +21,7 @@ const projects = [
       "A web app for uploading PDFs and YouTube videos, processing them into chunks, and interacting via chat. Uses MongoDB for document storage, Pinecone for vector retrieval, and OpenAI for responses. Features include document/video processing, vector storage, and a chat interface for querying.",
     github: "https://github.com/suryaansh2002/multi-doc-chat-rag",
     website: "https://multi-doc-chat-rag-client.vercel.app/",
-    tags: ["React", "MongoDB", "Pinecone", "OpenAI", "RAG", "Vector DB"],
+    tags: ["React", "MongoDB", "Pinecone", "OpenAI", "RAG", "Vector DB", "Youtube Videos"],
   },
   {
     title: "Real Time Meeting Summarizer",
@@ -38,7 +45,7 @@ const projects = [
     description:
       "A desktop application built using Electron JS and Python to allow users to automate scheduling the booking process of Tatkal tickets from the Indian Railways IRCTC Website. This is done using Selenium for browser automation and apscheduler to schedule Cron jobs.",
     github: "https://github.com/suryaansh2002/IRCTC_Tatkal",
-    tags: ["Electron", "Python", "Selenium", "Automation", "Desktop App"],
+    tags: ["Electron", "Python", "Selenium", "Automation", "Desktop App", "IRCTC"],
   },
   {
     title: "SLCM Automation",
@@ -48,7 +55,7 @@ const projects = [
     github: "https://github.com/suryaansh2002/form_filling_automation",
     website: "https://mitcse.manipal.edu/mentor",
     certificate: "https://drive.google.com/file/d/1CNSnxxN68ZbROibg1_3gB_JncxbmDmhl/view?usp=sharing",
-    tags: ["Selenium", "Python", "Web Scraping", "Automation"],
+    tags: ["Selenium", "Python", "Web Scraping", "Automation", "Manipal"],
   },
   {
     title: "Psychup",
@@ -57,7 +64,7 @@ const projects = [
       "A platform aimed at increasing awareness and providing content regarding psychology and mental health.",
     github: "https://github.com/suryaansh2002/psychup",
     website: "https://psychup.netlify.app/",
-    tags: ["React", "Mental Health", "Content Platform", "Netlify"],
+    tags: ["React", "Mental Health", "Content Platform", "NodeJS"],
   },
   {
     title: "Decrypt",
@@ -102,11 +109,22 @@ export function ProjectsSection() {
       { threshold: 0.1 },
     )
 
-    const elements = sectionRef.current?.querySelectorAll(".reveal")
-    elements?.forEach((el) => observer.observe(el))
+    const observeElements = () => {
+      const elements = sectionRef.current?.querySelectorAll(".reveal")
+      elements?.forEach((el) => observer.observe(el))
+    }
 
-    return () => observer.disconnect()
-  }, [])
+    // Initial observation
+    observeElements()
+
+    // Re-observe when showAll changes
+    const timeoutId = setTimeout(observeElements, 100)
+
+    return () => {
+      observer.disconnect()
+      clearTimeout(timeoutId)
+    }
+  }, [showAll])
 
   const displayedProjects = showAll ? projects : projects.slice(0, 3)
 
@@ -122,7 +140,7 @@ export function ProjectsSection() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {displayedProjects.map((project, index) => (
-            <Card key={index} className="project-card reveal group">
+            <Card key={`${project.title}-${index}`} className="project-card reveal active group">
               <CardHeader>
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center text-sm text-muted-foreground">
@@ -137,9 +155,12 @@ export function ProjectsSection() {
               <CardContent className="space-y-4">
                 <div className="flex flex-wrap gap-2">
                   {project.tags.map((tag, tagIndex) => (
-                    <Badge key={tagIndex} variant="secondary" className="text-xs">
+                    <span
+                      key={tagIndex}
+                      className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-blue-500/10 to-purple-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20 hover:border-blue-500/40 transition-colors"
+                    >
                       {tag}
-                    </Badge>
+                    </span>
                   ))}
                 </div>
 

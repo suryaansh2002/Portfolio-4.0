@@ -4,14 +4,47 @@ import { useEffect, useRef } from "react"
 import Image from "next/image"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
 import { Calendar, ExternalLink, ArrowRight } from "lucide-react"
+import moneyflo from '@/assets/moneyflo.png'
+import ridecell from '@/assets/ridecell.jpeg'
+import pefo from '@/assets/pefo.png'
+import kaiziq from '@/assets/kaiziq.png'
+import aidf from '@/assets/aidf.png'
 
 const workExperience = [
+   {
+    company: "AIDF (Asian Institute of Digital Finance)",
+    duration: "Oct '24 - Jun '25",
+    logo: aidf,
+    website: "https://www.aidf.nus.edu.sg/",
+    role: "Full Stack Developer",
+    description:
+      "Led the end-to-end development of ‘Caesers’, a credit risk assessment report platform, and engineered a ‘Credit Research Tool’ powered by OpenAI’s LLM. Built robust Django-based RESTful APIs, a dynamic NextJS front-end, and integrated secure authentication, real-time data visualizations, and automated report generation pipelines.",
+    technologies: [
+      "NextJS",
+      "Django",
+      "OpenAI GPT-4",
+      "GraphQL",
+      "PostgreSQL",
+      "Recharts",
+      "Ant Design",
+      "Docker",
+      "AWS (Lambda, S3, RDS)",
+      "GitLab CI/CD"
+    ],
+    highlights: [
+      "Architected and launched ‘Caesers’, automating credit risk report generation and cutting manual processing time.",
+      "Developed a ‘Credit Research Tool’ leveraging GPT-4 for on-demand financial insights, reducing analyst workload.",
+      "Designed and implemented secure, scalable REST APIs with Django.",
+      "Built interactive dashboards in NextJS with Recharts & AntD, enabling stakeholders to visualize key risk metrics in real time",
+      "Integrated CI/CD pipelines using GitLab, Docker, and AWS Lambda for zero-downtime deployments",
+      "Collaborated with data scientists to embed ML risk models, boosting prediction accuracy."
+    ],
+  },
   {
     company: "Moneyflo",
-    duration: "Mar '23 - Jun '24",
-    logo: "/placeholder.svg?height=60&width=60",
+    duration: "Mar '23 - Jul '24",
+    logo: moneyflo,
     website: "https://www.moneyflo.ai/",
     role: "Full Stack Developer",
     description:
@@ -27,7 +60,7 @@ const workExperience = [
   {
     company: "Ridecell",
     duration: "May '22 - Aug '22",
-    logo: "/placeholder.svg?height=60&width=60",
+    logo: ridecell,
     website: "https://ridecell.com/",
     role: "QA Automation Engineer",
     description:
@@ -41,9 +74,25 @@ const workExperience = [
     ],
   },
   {
+    company: "KaizIQ",
+    duration: "Apr '22 - Jul '22",
+    logo: kaiziq,
+    website: "https://kaiziq.io/",
+    role: "Full Stack Software Engineering Intern",
+    description:
+      "Worked on building an end-to-end SDLC tool. Developed both frontend and backend components, wrote unit tests for microservices.",
+    technologies: ["ReactJS", "JavaScript", "CSS", "Java", "Spring Boot"],
+    highlights: [
+      "Developed full-stack features for SDLC tool",
+      "Worked closely with founders on product vision",
+      "Built frontend and server-side components",
+      "Wrote comprehensive unit tests",
+    ],
+  },
+    {
     company: "PE Front Office",
-    duration: "Dec '22 - Jan '23",
-    logo: "/placeholder.svg?height=60&width=60",
+    duration: "Dec '21 - Jan '22",
+    logo: pefo,
     website: "https://pefrontoffice.com/",
     role: "Frontend Developer",
     description:
@@ -54,22 +103,6 @@ const workExperience = [
       "Implemented new client-facing features",
       "Improved user experience for financial platform",
       "Worked with alternative investment management tools",
-    ],
-  },
-  {
-    company: "Apice Tech",
-    duration: "Apr '22 - Jul '22",
-    logo: "/placeholder.svg?height=60&width=60",
-    website: "https://apicetech.in/",
-    role: "Full Stack Software Engineering Intern",
-    description:
-      "Worked on KaizIQ, an end-to-end SDLC tool. Developed both frontend and backend components, wrote unit tests for microservices.",
-    technologies: ["ReactJS", "JavaScript", "CSS", "Java", "Spring Boot"],
-    highlights: [
-      "Developed full-stack features for SDLC tool",
-      "Worked closely with founders on product vision",
-      "Built frontend and server-side components",
-      "Wrote comprehensive unit tests",
     ],
   },
 ]
@@ -173,9 +206,12 @@ export function WorkExperienceSection() {
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {work.technologies.map((tech, techIndex) => (
-                      <Badge key={techIndex} variant="secondary" className="text-xs">
+                      <span
+                        key={techIndex}
+                        className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-gradient-to-r from-emerald-500/10 to-blue-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 hover:border-emerald-500/40 hover:bg-gradient-to-r hover:from-emerald-500/20 hover:to-blue-500/20 transition-all duration-200 cursor-default"
+                      >
                         {tech}
-                      </Badge>
+                      </span>
                     ))}
                   </div>
                 </div>

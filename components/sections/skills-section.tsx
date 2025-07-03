@@ -2,10 +2,30 @@
 
 import { useState, useEffect, useRef } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import { ChevronDown, ChevronRight } from "lucide-react"
 
 const skillCategories = [
+  {
+    name: "Artificial Intelligence & Machine Learning",
+    skills: [
+      "Large Language Models (LLMs)",
+      "OpenAI API",
+      "Mistral",
+      "Vector Databases",
+      "RAG (Retrieval Augmented Generation)",
+      "Knowledge Graphs",
+      "Speaker Diarization",
+      "Computer Vision",
+      "CNN",
+      "RNN",
+      "Medical Image Analysis",
+      "NLP",
+      "AI Model Integration",
+      "Prompt Engineering",
+      "Transformers",
+    ],
+    color: "from-violet-500 to-purple-600",
+  },
   {
     name: "Programming Languages",
     skills: ["Python", "JavaScript", "TypeScript", "C++", "C", "Java", "Swift", "PHP"],
@@ -37,11 +57,6 @@ const skillCategories = [
     name: "Databases & Cloud",
     skills: ["MongoDB", "PostgreSQL", "MySQL", "TypeORM", "AWS", "Firebase", "Docker", "Git"],
     color: "from-orange-500 to-red-500",
-  },
-  {
-    name: "AI & Machine Learning",
-    skills: ["OpenAI API", "Whisper", "Mistral", "Vector Databases", "RAG", "LLMs", "NumPy", "Pandas", "Scikit-learn"],
-    color: "from-indigo-500 to-purple-500",
   },
   {
     name: "Testing & Automation",
@@ -112,13 +127,12 @@ export function SkillsSection() {
                 <CardContent>
                   <div className="flex flex-wrap gap-2">
                     {category.skills.map((skill, skillIndex) => (
-                      <Badge
+                      <span
                         key={skillIndex}
-                        variant="secondary"
-                        className="hover:scale-105 transition-transform cursor-default"
+                        className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-gradient-to-r from-blue-500/10 to-purple-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20 hover:border-blue-500/40 hover:bg-gradient-to-r hover:from-blue-500/20 hover:to-purple-500/20 transition-all duration-200 cursor-default"
                       >
                         {skill}
-                      </Badge>
+                      </span>
                     ))}
                   </div>
                 </CardContent>
@@ -135,15 +149,15 @@ export function SkillsSection() {
               <div className="text-muted-foreground">Technologies</div>
             </div>
             <div className="space-y-2">
-              <div className="text-3xl font-bold gradient-text">9</div>
+              <div className="text-3xl font-bold gradient-text">10+</div>
               <div className="text-muted-foreground">Projects</div>
             </div>
             <div className="space-y-2">
-              <div className="text-3xl font-bold gradient-text">4</div>
+              <div className="text-3xl font-bold gradient-text">3</div>
               <div className="text-muted-foreground">Research Papers</div>
             </div>
             <div className="space-y-2">
-              <div className="text-3xl font-bold gradient-text">4</div>
+              <div className="text-3xl font-bold gradient-text">5+</div>
               <div className="text-muted-foreground">Work Experiences</div>
             </div>
           </div>

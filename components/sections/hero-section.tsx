@@ -6,7 +6,7 @@ import { Download, Calendar, Info, Github, Linkedin, Mail, Code } from "lucide-r
 import { Button } from "@/components/ui/button"
 import { TypewriterText } from "@/components/ui/typewriter-text"
 import { FloatingElements } from "@/components/ui/floating-elements"
-
+import profile from '@/assets/profile.jpg'
 export function HeroSection() {
   const [mounted, setMounted] = useState(false)
 
@@ -115,7 +115,7 @@ export function HeroSection() {
               <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden glass-morphism p-2 floating-animation">
                 <div className="w-full h-full rounded-full overflow-hidden">
                   <Image
-                    src="/placeholder.svg?height=400&width=400"
+                    src={profile}
                     alt="Suryaansh Rathinam"
                     width={400}
                     height={400}
