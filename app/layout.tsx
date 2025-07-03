@@ -22,6 +22,11 @@ export const metadata: Metadata = {
   keywords: "Full Stack Developer, AI Researcher, Machine Learning, React, Next.js, Python, Singapore",
   authors: [{ name: "Suryaansh Rathinam" }],
   creator: "Suryaansh Rathinam",
+  icons: {
+    icon: "/icon.png",
+    shortcut: "/icon.png",
+    apple: "/icon.png",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
