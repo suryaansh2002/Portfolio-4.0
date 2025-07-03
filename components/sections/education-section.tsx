@@ -5,8 +5,9 @@ import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { GraduationCap, Calendar, Award } from "lucide-react";
-import nus from '@/assets/nus.png'
-import manipal from '@/assets/manipal.jpg'
+import nus from '@/assets/nus.png';
+import manipal from '@/assets/manipal.jpg';
+
 const education = [
   {
     institution: "National University of Singapore",
@@ -17,24 +18,31 @@ const education = [
     description: (
       <div>
         Specializing in AI with focus on machine learning, deep learning, and
-        natural language processing. <br /> Teaching Assistant for{" "}
-        <a href="https://nusmods.com/courses/CS5224/cloud-computing" target="_blank">
-
-        <Badge
-          variant="secondary"
-          className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 text-blue-600 dark:text-blue-400"
+        natural language processing. <br /> Teaching Assistant for{' '}
+        <a
+          href="https://nusmods.com/courses/CS5224/cloud-computing"
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          Cloud Computing
-        </Badge>
-        </a>
-        and
-        <a href="https://nusmods.com/courses/CS3219/software-engineering-principles-and-patterns" target="_blank">
-        <Badge
-          variant="secondary"
-          className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 text-blue-600 dark:text-blue-400"
+          <Badge
+            variant="secondary"
+            className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 text-blue-600 dark:text-blue-400"
+          >
+            Cloud Computing
+          </Badge>
+        </a>{' '}
+        and{' '}
+        <a
+          href="https://nusmods.com/courses/CS3219/software-engineering-principles-and-patterns"
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          Software Engineering
-        </Badge>
+          <Badge
+            variant="secondary"
+            className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 text-blue-600 dark:text-blue-400"
+          >
+            Software Engineering
+          </Badge>
         </a>
       </div>
     ),
@@ -72,11 +80,11 @@ export function EducationSection() {
   }, []);
 
   return (
-    <section id="education" ref={sectionRef} className="section-padding">
+    <section id="education" ref={sectionRef} className="section-padding px-4 sm:px-0">
       <div className="container-custom">
         <div className="text-center mb-16 reveal">
           <h2 className="text-section-title gradient-text">Education</h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto">
             My academic journey in computer science and artificial intelligence
           </p>
         </div>
@@ -85,9 +93,9 @@ export function EducationSection() {
           {education.map((edu, index) => (
             <Card key={index} className="project-card reveal group">
               <CardHeader>
-                <div className="flex items-start gap-6">
-                  <div className="flex-shrink-0">
-                    <div className="w-20 h-20 rounded-full overflow-hidden glass-morphism p-2">
+                <div className="flex flex-col sm:flex-row items-start gap-6">
+                  <div className="flex-shrink-0 md:w-auto w-[100%]">
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden glass-morphism p-2 mx-auto">
                       <Image
                         src={edu.logo || "/placeholder.svg"}
                         alt={`${edu.institution} logo`}
@@ -98,17 +106,17 @@ export function EducationSection() {
                     </div>
                   </div>
 
-                  <div className="flex-1 space-y-3">
+                  <div className="flex-1 space-y-3 text-center sm:text-left">
                     <div>
-                      <CardTitle className="text-xl group-hover:gradient-text transition-all duration-300">
+                      <CardTitle className="text-lg sm:text-xl group-hover:gradient-text transition-all duration-300">
                         {edu.institution}
                       </CardTitle>
-                      <p className="text-lg text-muted-foreground font-medium">
+                      <p className="text-md sm:text-lg text-muted-foreground font-medium">
                         {edu.degree}
                       </p>
                     </div>
 
-                    <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
+                    <div className="flex flex-wrap justify-center sm:justify-start gap-4 text-sm text-muted-foreground">
                       <div className="flex items-center gap-1">
                         <Calendar className="w-4 h-4" />
                         {edu.duration}
@@ -127,10 +135,10 @@ export function EducationSection() {
                   {edu.description}
                 </div>
 
-                <div className="mt-4">
+                <div className="mt-4 text-center sm:text-left">
                   <Badge
                     variant="secondary"
-                    className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 text-blue-600 dark:text-blue-400"
+                    className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 text-blue-600 dark:text-blue-400 inline-flex items-center"
                   >
                     <GraduationCap className="w-3 h-3 mr-1" />
                     {edu.gpa} GPA

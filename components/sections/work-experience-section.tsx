@@ -12,7 +12,7 @@ import kaiziq from '@/assets/kaiziq.png'
 import aidf from '@/assets/aidf.png'
 
 const workExperience = [
-   {
+  {
     company: "AIDF (Asian Institute of Digital Finance)",
     duration: "Oct '24 - Jun '25",
     logo: aidf,
@@ -89,7 +89,7 @@ const workExperience = [
       "Wrote comprehensive unit tests",
     ],
   },
-    {
+  {
     company: "PE Front Office",
     duration: "Dec '21 - Jan '22",
     logo: pefo,
@@ -129,11 +129,15 @@ export function WorkExperienceSection() {
   }, [])
 
   return (
-    <section id="experience" ref={sectionRef} className="section-padding bg-muted/30">
+    <section
+      id="experience"
+      ref={sectionRef}
+      className="section-padding bg-muted/30 px-4 sm:px-0"
+    >
       <div className="container-custom">
         <div className="text-center mb-16 reveal">
           <h2 className="text-section-title gradient-text">Work Experience</h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto">
             Professional journey across startups and established companies
           </p>
         </div>
@@ -142,30 +146,32 @@ export function WorkExperienceSection() {
           {workExperience.map((work, index) => (
             <Card key={index} className="project-card reveal group">
               <CardHeader>
-                <div className="flex items-start gap-6">
+                <div className="flex flex-col sm:flex-row items-center gap-6 md:w-auto w-[100%]">
                   <div className="flex-shrink-0">
-                    <div className="w-16 h-16 rounded-xl overflow-hidden glass-morphism p-2">
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden glass-morphism p-2 mx-auto sm:mx-0">
                       <Image
                         src={work.logo || "/placeholder.svg"}
                         alt={`${work.company} logo`}
-                        width={60}
-                        height={60}
+                        width={80}
+                        height={80}
                         className="w-full h-full object-contain"
                       />
                     </div>
                   </div>
 
                   <div className="flex-1">
-                    <div className="flex items-start justify-between mb-3">
+                    <div className="flex flex-col sm:flex-row sm:items-start justify-between mb-3 text-center sm:text-left gap-2">
                       <div>
-                        <CardTitle className="text-xl group-hover:gradient-text transition-all duration-300">
+                        <CardTitle className="text-lg sm:text-xl group-hover:gradient-text transition-all duration-300 md:w-auto w-[100%]">
                           {work.company}
                         </CardTitle>
-                        <p className="text-lg text-muted-foreground font-medium">{work.role}</p>
+                        <p className="text-md sm:text-lg text-muted-foreground font-medium">
+                          {work.role}
+                        </p>
                       </div>
 
-                      <div className="flex items-center gap-2">
-                        <div className="flex items-center text-sm text-muted-foreground">
+                      <div className="flex items-center justify-center sm:justify-start gap-2 md:w-auto w-[120%] text-center">
+                        <div className="flex  items-center text-sm text-muted-foreground text-center">
                           <Calendar className="w-4 h-4 mr-1" />
                           {work.duration}
                         </div>
@@ -184,27 +190,32 @@ export function WorkExperienceSection() {
               </CardHeader>
 
               <CardContent className="space-y-6">
-                <p className="text-muted-foreground leading-relaxed">{work.description}</p>
+                <p className="text-muted-foreground leading-relaxed sm:text-left">
+                  {work.description}
+                </p>
 
-                <div className="space-y-4">
+                <div className="space-y-4  sm:text-left">
                   <h4 className="font-semibold text-sm uppercase tracking-wide text-muted-foreground">
                     Key Highlights
                   </h4>
                   <ul className="space-y-2">
                     {work.highlights.map((highlight, highlightIndex) => (
-                      <li key={highlightIndex} className="flex items-start gap-2 text-sm text-muted-foreground">
-                        <ArrowRight className="w-4 h-4 mt-0.5 text-blue-500 flex-shrink-0" />
+                      <li
+                        key={highlightIndex}
+                        className="flex items-start gap-2 text-sm text-muted-foreground"
+                      >
+                        <ArrowRight className="w-4 h-4 mt-0.5 flex-shrink-0" />
                         {highlight}
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="space-y-2">
+                <div className="space-y-2 text-center sm:text-left">
                   <h4 className="font-semibold text-sm uppercase tracking-wide text-muted-foreground">
                     Technologies Used
                   </h4>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap justify-center sm:justify-start gap-2">
                     {work.technologies.map((tech, techIndex) => (
                       <span
                         key={techIndex}

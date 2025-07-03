@@ -16,7 +16,7 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "Suryaansh Rathinam | Full Stack Developer & AI Researcher",
+  title: "Suryaansh Rathinam",
   description:
     "Portfolio of Suryaansh Rathinam - Full Stack Developer and AI Researcher pursuing Masters at NUS. Explore projects, research, and professional journey.",
   keywords: "Full Stack Developer, AI Researcher, Machine Learning, React, Next.js, Python, Singapore",
@@ -26,13 +26,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://suryaansh-portfolio.vercel.app",
-    title: "Suryaansh Rathinam | Full Stack Developer & AI Researcher",
+    title: "Suryaansh Rathinam",
     description: "Portfolio showcasing projects, research, and professional journey in Full Stack Development and AI.",
     siteName: "Suryaansh Rathinam Portfolio",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Suryaansh Rathinam | Full Stack Developer & AI Researcher",
+    title: "Suryaansh Rathinam",
     description: "Portfolio showcasing projects, research, and professional journey in Full Stack Development and AI.",
   },
   robots: {
