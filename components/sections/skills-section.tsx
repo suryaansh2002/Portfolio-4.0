@@ -50,7 +50,7 @@ const skillCategories = [
   },
   {
     name: "Backend Development",
-    skills: ["Node.js", "Express.js", "Django", "FastAPI", "NestJS", "Spring Boot", "RESTful APIs", "GraphQL"],
+    skills: ["Node.js", "Express.js", "Django", "FastAPI", "NestJS", "RESTful APIs", "GraphQL"],
     color: "from-green-500 to-emerald-500",
   },
   {

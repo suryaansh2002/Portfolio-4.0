@@ -10,8 +10,36 @@ import ridecell from '@/assets/ridecell.jpeg'
 import pefo from '@/assets/pefo.png'
 import kaiziq from '@/assets/kaiziq.png'
 import aidf from '@/assets/aidf.png'
+import datalensai from '@/assets/datalensai.png'
 
 const workExperience = [
+ {
+  company: "Datalens AI",
+  duration: "May '25 - Jul '25",
+  logo: datalensai,
+  website: "https://datalensai.com/",
+  role: "AI Developer",
+  description:
+    "Built intelligent speech and query interfaces for enterprise data systems. Developed a diarization and transcription pipeline for customer service call recordings using Whisper, and implemented a natural language to SQL translator for database querying.",
+  technologies: [
+    "Python",
+    "Whisper",
+    "PyTorch",
+    "HuggingFace Transformers",
+    "Streamlit",
+    "FastAPI",
+    "PostgreSQL",
+    "SQLAlchemy",
+    "OpenAI API",
+  ],
+  highlights: [
+    "Engineered a diarization and transcription pipeline to process large volumes of customer service calls.",
+    "Improved Whisper model accuracy through fine-tuning on a labeled dataset of call audio and transcripts.",
+    "Created a natural language to SQL query interface that enabled users to interact with databases via plain English.",
+    "Built end-to-end pipeline to parse schema, generate SQL queries from prompts, execute queries, and return formatted results.",
+    "Deployed tools with containerized microservices and interactive front-ends for internal teams."
+  ]
+},
   {
     company: "AIDF (Asian Institute of Digital Finance)",
     duration: "Oct '24 - Jun '25",
