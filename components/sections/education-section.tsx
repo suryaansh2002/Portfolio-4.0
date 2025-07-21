@@ -1,12 +1,13 @@
-"use client";
+"use client"
 
-import { useEffect, useRef } from "react";
-import Image from "next/image";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { GraduationCap, Calendar, Award } from "lucide-react";
-import nus from '@/assets/nus.png';
-import manipal from '@/assets/manipal.jpg';
+import { useEffect, useRef, useState } from "react"
+import Image from "next/image"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { GraduationCap, Calendar, Award, ChevronDown, ChevronUp, BookOpen } from "lucide-react"
+import nus from "@/assets/nus.png"
+import manipal from "@/assets/manipal.jpg"
 
 const education = [
   {
@@ -17,21 +18,17 @@ const education = [
     logo: nus,
     description: (
       <div>
-        Specializing in AI with focus on machine learning, deep learning, and
-        natural language processing. <br /> Teaching Assistant for{' '}
-        <a
-          href="https://nusmods.com/courses/CS5224/cloud-computing"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        Specializing in AI with focus on machine learning, deep learning, and natural language processing. <br />{" "}
+        Teaching Assistant for{" "}
+        <a href="https://nusmods.com/courses/CS5224/cloud-computing" target="_blank" rel="noopener noreferrer">
           <Badge
             variant="secondary"
             className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 text-blue-600 dark:text-blue-400"
           >
             Cloud Computing
           </Badge>
-        </a>{' '}
-        and{' '}
+        </a>{" "}
+        and{" "}
         <a
           href="https://nusmods.com/courses/CS3219/software-engineering-principles-and-patterns"
           target="_blank"
@@ -46,6 +43,16 @@ const education = [
         </a>
       </div>
     ),
+    courses: [
+      "Neural Networks and Deep Learning",
+      "Distributed Systems",
+      "AI Planning and Decision Making",
+      "Knowledge Discovery and Data Mining",
+      "Big Data Analytics",
+      "Text Mining",
+      "Information Visualization",
+      "Uncertainty Modelling in AI"
+    ],
   },
   {
     institution: "Manipal Institute of Technology",
@@ -55,29 +62,54 @@ const education = [
     logo: manipal,
     description:
       "Comprehensive computer science education with strong foundation in algorithms, data structures, and software engineering.",
+    courses: [
+    "Data Structures And Applications",
+    "Digital System Design",
+    "Object Oriented Programming",
+    "Database Systems",
+    "Design And Analysis Of Algorithms",
+    "Embedded Systems",
+    "Formal Languages And Automata Theory",
+    "Compiler Design",
+    "Computer Networks",
+    "Operating Systems",
+    "Software Engineering",
+    "Distributed Systems",
+    "Parallel Computer Architecture And Programming",
+    "Big Data Integration And Processing"
+]
+,
   },
-];
+]
 
 export function EducationSection() {
-  const sectionRef = useRef<HTMLElement>(null);
+  const sectionRef = useRef<HTMLElement>(null)
+  const [expandedCards, setExpandedCards] = useState<{ [key: number]: boolean }>({})
+
+  const toggleCourses = (index: number) => {
+    setExpandedCards((prev) => ({
+      ...prev,
+      [index]: !prev[index],
+    }))
+  }
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("active");
+            entry.target.classList.add("active")
           }
-        });
+        })
       },
-      { threshold: 0.1 }
-    );
+      { threshold: 0.1 },
+    )
 
-    const elements = sectionRef.current?.querySelectorAll(".reveal");
-    elements?.forEach((el) => observer.observe(el));
+    const elements = sectionRef.current?.querySelectorAll(".reveal")
+    elements?.forEach((el) => observer.observe(el))
 
-    return () => observer.disconnect();
-  }, []);
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <section id="education" ref={sectionRef} className="section-padding px-4 sm:px-0">
@@ -105,17 +137,13 @@ export function EducationSection() {
                       />
                     </div>
                   </div>
-
                   <div className="flex-1 space-y-3 text-center sm:text-left">
                     <div>
                       <CardTitle className="text-lg sm:text-xl group-hover:gradient-text transition-all duration-300">
                         {edu.institution}
                       </CardTitle>
-                      <p className="text-md sm:text-lg text-muted-foreground font-medium">
-                        {edu.degree}
-                      </p>
+                      <p className="text-md sm:text-lg text-muted-foreground font-medium">{edu.degree}</p>
                     </div>
-
                     <div className="flex flex-wrap justify-center sm:justify-start gap-4 text-sm text-muted-foreground">
                       <div className="flex items-center gap-1">
                         <Calendar className="w-4 h-4" />
@@ -130,12 +158,10 @@ export function EducationSection() {
                 </div>
               </CardHeader>
 
-              <CardContent>
-                <div className="text-muted-foreground leading-relaxed">
-                  {edu.description}
-                </div>
+              <CardContent className="space-y-4">
+                <div className="text-muted-foreground leading-relaxed">{edu.description}</div>
 
-                <div className="mt-4 text-center sm:text-left">
+                <div className="flex flex-wrap justify-center sm:justify-start gap-2">
                   <Badge
                     variant="secondary"
                     className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 text-blue-600 dark:text-blue-400 inline-flex items-center"
@@ -144,11 +170,50 @@ export function EducationSection() {
                     {edu.gpa} GPA
                   </Badge>
                 </div>
+
+                {/* Courses Section */}
+                <div className="border-t pt-4">
+                  <Button
+                    variant="ghost"
+                    onClick={() => toggleCourses(index)}
+                    className="w-full justify-between p-0 h-auto font-medium text-sm hover:bg-transparent group/button"
+                  >
+                    <div className="flex items-center gap-2">
+                      <BookOpen className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                      <span className="group-hover/button:gradient-text transition-all duration-300">
+                        Relevant Coursework ({edu.courses.length} courses)
+                      </span>
+                    </div>
+                    {expandedCards[index] ? (
+                      <ChevronUp className="w-4 h-4 text-muted-foreground group-hover/button:text-blue-600 dark:group-hover/button:text-blue-400 transition-colors" />
+                    ) : (
+                      <ChevronDown className="w-4 h-4 text-muted-foreground group-hover/button:text-blue-600 dark:group-hover/button:text-blue-400 transition-colors" />
+                    )}
+                  </Button>
+
+                  <div
+                    className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                      expandedCards[index] ? "max-h-96 opacity-100 mt-4" : "max-h-0 opacity-0"
+                    }`}
+                  >
+                    <div className="flex flex-wrap gap-2">
+                      {edu.courses.map((course, courseIndex) => (
+                        <Badge
+                          key={courseIndex}
+                          variant="outline"
+                          className="text-xs px-3 py-1 bg-gradient-to-r from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-700 border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:from-blue-50 hover:to-purple-50 dark:hover:from-blue-900/20 dark:hover:to-purple-900/20 hover:border-blue-200 dark:hover:border-blue-700 hover:text-blue-700 dark:hover:text-blue-300 transition-all duration-200 cursor-default"
+                        >
+                          {course}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                </div>
               </CardContent>
             </Card>
           ))}
         </div>
       </div>
     </section>
-  );
+  )
 }
