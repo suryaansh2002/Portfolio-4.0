@@ -14,7 +14,7 @@ const education = [
     institution: "National University of Singapore",
     degree: "Masters of Computing: Artificial Intelligence Specialisation",
     duration: "2024-2025",
-    gpa: "4.63 / 5",
+    gpa: "4.45 / 5",
     logo: nus,
     description: (
       <div>
@@ -23,7 +23,7 @@ const education = [
         <a href="https://nusmods.com/courses/CS5224/cloud-computing" target="_blank" rel="noopener noreferrer">
           <Badge
             variant="secondary"
-            className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 text-blue-600 dark:text-blue-400"
+            className="bg-accent/10 text-accent border-accent/20"
           >
             Cloud Computing
           </Badge>
@@ -36,7 +36,7 @@ const education = [
         >
           <Badge
             variant="secondary"
-            className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 text-blue-600 dark:text-blue-400"
+            className="bg-accent/10 text-accent border-accent/20"
           >
             Software Engineering
           </Badge>
@@ -58,7 +58,7 @@ const education = [
     institution: "Manipal Institute of Technology",
     degree: "Bachelor's of Technology: Computer Science",
     duration: "2020-2024",
-    gpa: "9.47 / 10",
+    gpa: "9.30 / 10",
     logo: manipal,
     description:
       "Comprehensive computer science education with strong foundation in algorithms, data structures, and software engineering.",
@@ -164,7 +164,7 @@ export function EducationSection() {
                 <div className="flex flex-wrap justify-center sm:justify-start gap-2">
                   <Badge
                     variant="secondary"
-                    className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 text-blue-600 dark:text-blue-400 inline-flex items-center"
+                    className="bg-accent/10 text-accent border-accent/20 inline-flex items-center"
                   >
                     <GraduationCap className="w-3 h-3 mr-1" />
                     {edu.gpa} GPA
@@ -179,15 +179,15 @@ export function EducationSection() {
                     className="w-full justify-between p-0 h-auto font-medium text-sm hover:bg-transparent group/button"
                   >
                     <div className="flex items-center gap-2">
-                      <BookOpen className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                      <BookOpen className="w-4 h-4 text-accent" />
                       <span className="group-hover/button:gradient-text transition-all duration-300">
                         Relevant Coursework ({edu.courses.length} courses)
                       </span>
                     </div>
                     {expandedCards[index] ? (
-                      <ChevronUp className="w-4 h-4 text-muted-foreground group-hover/button:text-blue-600 dark:group-hover/button:text-blue-400 transition-colors" />
+                      <ChevronUp className="w-4 h-4 text-muted-foreground group-hover/button:text-accent transition-colors" />
                     ) : (
-                      <ChevronDown className="w-4 h-4 text-muted-foreground group-hover/button:text-blue-600 dark:group-hover/button:text-blue-400 transition-colors" />
+                      <ChevronDown className="w-4 h-4 text-muted-foreground group-hover/button:text-accent transition-colors" />
                     )}
                   </Button>
 
@@ -201,7 +201,7 @@ export function EducationSection() {
                         <Badge
                           key={courseIndex}
                           variant="outline"
-                          className="text-xs px-3 py-1 bg-gradient-to-r from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-700 border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:from-blue-50 hover:to-purple-50 dark:hover:from-blue-900/20 dark:hover:to-purple-900/20 hover:border-blue-200 dark:hover:border-blue-700 hover:text-blue-700 dark:hover:text-blue-300 transition-all duration-200 cursor-default"
+                          className="text-xs px-3 py-1 bg-ink-subtle border-border text-cream-muted hover:bg-accent/10 hover:border-accent/40 hover:text-accent transition-all duration-200 cursor-default"
                         >
                           {course}
                         </Badge>

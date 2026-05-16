@@ -13,6 +13,46 @@ import aidf from '@/assets/aidf.png'
 import datalensai from '@/assets/datalensai.png'
 
 const workExperience = [
+  {
+    company: "ST Engineering",
+    duration: "May '26 - Present",
+    logo: null,
+    website: "https://www.stengg.com/",
+    role: "Senior AI Engineer",
+    location: "Singapore",
+    description:
+      "Senior AI Engineer in the Research & Development division.",
+    technologies: ["Python", "AI/ML", "R&D"],
+    highlights: [],
+  },
+  {
+    company: "ThoutAI",
+    duration: "Aug '25 - Apr '26",
+    logo: null,
+    website: "https://thout.ai/",
+    role: "Founding Engineer (Backend & AI Lead)",
+    description:
+      "Led the backend and AI team at ThoutAI, architecting the infrastructure behind a Meeting Intelligence Platform that turns conversations into action — at the intersection of AI agents, real-time systems, and product engineering.",
+    technologies: [
+      "Python",
+      "FastAPI",
+      "Node.js",
+      "TypeScript",
+      "PostgreSQL",
+      "Redis",
+      "LangChain",
+      "OpenAI",
+      "WebSockets",
+      "AWS",
+      "Docker",
+    ],
+    highlights: [
+      "Led the backend and AI team building a Meeting Intelligence Platform.",
+      "Architected backend services for real-time meeting capture, transcription, and intelligence.",
+      "Built AI Agents for action extraction, summarization, and downstream workflow automation.",
+      "Developed the frontend interface that surfaced agent outputs to users.",
+    ],
+  },
  {
   company: "Datalens AI",
   duration: "May '25 - Jul '25",
@@ -247,7 +287,7 @@ export function WorkExperienceSection() {
                     {work.technologies.map((tech, techIndex) => (
                       <span
                         key={techIndex}
-                        className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-gradient-to-r from-emerald-500/10 to-blue-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 hover:border-emerald-500/40 hover:bg-gradient-to-r hover:from-emerald-500/20 hover:to-blue-500/20 transition-all duration-200 cursor-default"
+                        className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider bg-accent/10 text-accent border border-accent/20 hover:border-accent/40 hover:bg-accent/20 transition-all duration-200 cursor-default"
                       >
                         {tech}
                       </span>

@@ -4,7 +4,6 @@ import { useState, useEffect } from "react"
 import Image from "next/image"
 import { Download, Calendar, Info, Github, Linkedin, Mail, Code } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { TypewriterText } from "@/components/ui/typewriter-text"
 import { FloatingElements } from "@/components/ui/floating-elements"
 import profile from '@/assets/profile.jpg'
 export function HeroSection() {
@@ -44,20 +43,32 @@ export function HeroSection() {
           {/* Content */}
           <div className="space-y-8 text-center lg:text-left">
             <div className="space-y-4">
-              <div className="text-lg text-muted-foreground font-medium">Hello, I am</div>
-              <h1 className="text-hero gradient-text">
-                <TypewriterText text="SURYAANSH" />
+              <div className="hero-line hero-line-1 text-xs sm:text-sm text-muted-foreground font-mono uppercase tracking-[0.12em]">
+                Hi, my name is
+              </div>
+              <h1 className="hero-line hero-line-2 text-hero font-display">
+                <span className="text-foreground">Suryaansh Rathinam.</span>
               </h1>
-              <div className="text-xl sm:text-2xl lg:text-3xl text-muted-foreground">
-                Full Stack Developer & AI Researcher
+              <div className="hero-line hero-line-3 text-xl sm:text-2xl lg:text-3xl text-muted-foreground font-display italic">
+                I build AI systems.
               </div>
-              <div className="text-lg text-muted-foreground max-w-2xl">
-                Pursuing Masters of Computing (AI Specialization) at National University of Singapore
-              </div>
+              <p className="hero-line hero-line-4 text-base sm:text-lg text-muted-foreground max-w-2xl leading-relaxed">
+                I turn research into real products — from fine-tuning ML models to deploying the full-stack systems
+                that put them in users' hands. Currently a Senior AI Engineer at{" "}
+                <a
+                  href="https://www.stengg.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-accent hover:text-accent-hover underline-offset-4 hover:underline transition-colors"
+                >
+                  ST Engineering
+                </a>
+                .
+              </p>
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <div className="hero-cta flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Button onClick={handleDownloadResume} className="btn-primary">
                 <Download className="w-5 h-5 mr-2" />
                 Download Resume
@@ -102,7 +113,7 @@ export function HeroSection() {
                 variant="ghost"
                 size="icon"
                 className="rounded-full glass-morphism hover:scale-110 transition-transform"
-                onClick={() => window.open("https://leetcode.com/suryaansh28/", "_blank")}
+                onClick={() => window.open("https://leetcode.com/suryaansh28", "_blank")}
               >
                 <Code className="w-5 h-5" />
               </Button>
@@ -126,8 +137,8 @@ export function HeroSection() {
               </div>
 
               {/* Decorative elements */}
-              <div className="absolute -top-4 -right-4 w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full opacity-20 animate-pulse"></div>
-              <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full opacity-20 animate-pulse delay-1000"></div>
+              <div className="absolute -top-4 -right-4 w-20 h-20 bg-accent rounded-full opacity-15"></div>
+              <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-accent-muted rounded-full opacity-20"></div>
             </div>
           </div>
         </div>

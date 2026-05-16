@@ -5,7 +5,7 @@ import { useEffect, useState, useRef } from "react"
 export function AnimatedCursor() {
   const [position, setPosition] = useState({ x: 0, y: 0 })
   const [isPointer, setIsPointer] = useState(false)
-  const requestRef = useRef<number>()
+  const requestRef = useRef<number | null>(null)
 
   useEffect(() => {
     let mouseX = 0
@@ -51,7 +51,7 @@ export function AnimatedCursor() {
           top: position.y - 10,
           width: 20,
           height: 20,
-          background: "radial-gradient(circle, rgba(59,130,246,0.8) 0%, rgba(139,92,246,0.4) 100%)",
+          background: "radial-gradient(circle, hsl(var(--color-accent) / 0.6) 0%, hsl(var(--color-accent-muted) / 0.3) 100%)",
           borderRadius: "50%",
           filter: "blur(1px)",
           transform: `translate3d(0, 0, 0)`, // Hardware acceleration
@@ -64,7 +64,7 @@ export function AnimatedCursor() {
           top: position.y - 2,
           width: 4,
           height: 4,
-          backgroundColor: "#3b82f6",
+          backgroundColor: "hsl(var(--color-accent))",
           borderRadius: "50%",
           transform: `translate3d(0, 0, 0)`, // Hardware acceleration
         }}

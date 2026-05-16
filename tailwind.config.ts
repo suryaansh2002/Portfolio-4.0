@@ -42,7 +42,9 @@ const config: Config = {
           foreground: "hsl(var(--muted-foreground))",
         },
         accent: {
-          DEFAULT: "hsl(var(--accent))",
+          DEFAULT: "hsl(var(--color-accent))",
+          hover: "hsl(var(--color-accent-hover))",
+          muted: "hsl(var(--color-accent-muted))",
           foreground: "hsl(var(--accent-foreground))",
         },
         popover: {
@@ -52,6 +54,16 @@ const config: Config = {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
+        },
+        ink: {
+          base: "hsl(var(--color-bg-base))",
+          elevated: "hsl(var(--color-bg-elevated))",
+          subtle: "hsl(var(--color-bg-subtle))",
+        },
+        cream: {
+          DEFAULT: "hsl(var(--color-text-primary))",
+          muted: "hsl(var(--color-text-secondary))",
+          dim: "hsl(var(--color-text-tertiary))",
         },
       },
       borderRadius: {
@@ -68,14 +80,27 @@ const config: Config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "reveal-up": {
+          from: { opacity: "0", transform: "translateY(20px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
+        "hero-line-in": {
+          from: { opacity: "0", transform: "translateY(8px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "reveal-up": "reveal-up 600ms cubic-bezier(0.16, 1, 0.3, 1) both",
       },
       fontFamily: {
-        sans: ["var(--font-inter)"],
-        mono: ["var(--font-jetbrains-mono)"],
+        sans: ["var(--font-plex-sans)", "system-ui", "-apple-system", "sans-serif"],
+        display: ["var(--font-fraunces)", "Georgia", "serif"],
+        mono: ["var(--font-jetbrains-mono)", "ui-monospace", "monospace"],
+      },
+      transitionTimingFunction: {
+        "out-expo": "cubic-bezier(0.16, 1, 0.3, 1)",
       },
     },
   },

@@ -12,28 +12,28 @@ const socialLinks = [
     icon: Github,
     url: "https://github.com/suryaansh2002/",
     description: "View my code repositories",
-    color: "hover:text-gray-900 dark:hover:text-white",
+    color: "hover:text-accent",
   },
   {
     name: "LinkedIn",
     icon: Linkedin,
     url: "https://www.linkedin.com/in/suryaansh-rathinam-33a86b1b6/",
     description: "Connect with me professionally",
-    color: "hover:text-blue-600",
+    color: "hover:text-accent",
   },
   {
     name: "Email",
     icon: Mail,
     url: "mailto:suryaansh2002@gmail.com",
     description: "Send me a direct message",
-    color: "hover:text-red-500",
+    color: "hover:text-accent",
   },
   {
     name: "LeetCode",
     icon: Code,
-    url: "https://leetcode.com/suryaansh28/",
+    url: "https://leetcode.com/suryaansh28",
     description: "Check out my coding practice...",
-    color: "hover:text-orange-500",
+    color: "hover:text-accent",
   },
 ]
 
@@ -141,9 +141,9 @@ export function ContactSection() {
                 </div>
 
                 {/* Floating elements */}
-                <div className="absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full opacity-60 animate-bounce"></div>
-                <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full opacity-60 animate-bounce delay-1000"></div>
-                <div className="absolute top-1/2 -left-8 w-4 h-4 bg-gradient-to-r from-green-500 to-blue-500 rounded-full opacity-60 animate-bounce delay-500"></div>
+                <div className="absolute -top-4 -right-4 w-8 h-8 bg-accent rounded-full opacity-40"></div>
+                <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-accent-hover rounded-full opacity-30"></div>
+                <div className="absolute top-1/2 -left-8 w-4 h-4 bg-accent-muted rounded-full opacity-40"></div>
               </div>
             </div>
           </div>

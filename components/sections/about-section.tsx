@@ -5,6 +5,7 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Calendar } from "lucide-react"
+import { CountUp } from "@/components/ui/count-up"
 import about from '@/assets/about.png'
 export function AboutSection() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -75,9 +76,17 @@ export function AboutSection() {
                 fostering an unceasing desire for learning and growth.
               </p>
               <p className="text-muted-foreground leading-relaxed">
-                My journey extends beyond development; I have delved into research in Artificial Intelligence and other
-                domains as well. I am currently working on solidifying and enhancing my knowledge in the field of LLMs,
-                and trying to keep up with the latest advancements in the AI space.
+                Now I'm at{" "}
+                <a
+                  href="https://www.stengg.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-accent hover:text-accent-hover underline-offset-4 hover:underline transition-colors"
+                >
+                  ST Engineering
+                </a>
+                's R&amp;D division as a Senior AI Engineer. The work I'm drawn to lives at the intersection of AI
+                research, real-time systems, and product engineering — which is where I've been heading the whole time.
               </p>
             </div>
 
@@ -113,6 +122,34 @@ export function AboutSection() {
                 <Calendar className="w-5 h-5 mr-2" />
                 Connect With Me
               </Button>
+            </div>
+          </div>
+        </div>
+
+        {/* Stats Block */}
+        <div className="mt-20 reveal">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0 md:divide-x divide-border max-w-4xl mx-auto stats-row">
+            <div className="text-center px-6 stat-item" style={{ animationDelay: "0ms" }}>
+              <div className="font-display text-5xl sm:text-6xl text-foreground mb-3">
+                <CountUp end={2} suffix="+" />
+              </div>
+              <div className="font-mono uppercase tracking-[0.12em] text-xs text-muted-foreground">
+                Years Experience
+              </div>
+            </div>
+            <div className="text-center px-6 stat-item" style={{ animationDelay: "100ms" }}>
+              <div className="font-display text-5xl sm:text-6xl text-foreground mb-3">
+                <CountUp end={3} />
+              </div>
+              <div className="font-mono uppercase tracking-[0.12em] text-xs text-muted-foreground">
+                Publications
+              </div>
+            </div>
+            <div className="text-center px-6 stat-item" style={{ animationDelay: "200ms" }}>
+              <div className="font-display text-5xl sm:text-6xl text-foreground mb-3">NUS</div>
+              <div className="font-mono uppercase tracking-[0.12em] text-xs text-muted-foreground">
+                Masters in AI
+              </div>
             </div>
           </div>
         </div>

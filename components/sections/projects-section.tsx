@@ -11,7 +11,7 @@ const projects = [
   date: "April 2025",
   description:
     "A full-stack AI application that enables users to query their Gmail content using natural language. Implements secure Gmail OAuth login, fetches emails and attachments, converts them into embeddings using sentence transformers, and stores them in Pinecone. Users can ask questions and receive contextually relevant answers powered by Ollama LLM. The system is architected with a FastAPI backend, Next.js frontend, and supports attachment processing (PDF, CSV, text).",
-  github: "https://github.com/suryaansh2002/multi-doc-chat-rag",
+  github: "https://github.com/suryaansh2002/gmail-rag",
   tags: ["Next.js", "React", "Tailwind CSS", "FastAPI", "Python", "Pinecone", "Ollama", "OAuth", "Email AI", "RAG", "Vector DB"],
 },
   {
@@ -157,7 +157,7 @@ export function ProjectsSection() {
                   {project.tags.map((tag, tagIndex) => (
                     <span
                       key={tagIndex}
-                      className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-blue-500/10 to-purple-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20 hover:border-blue-500/40 transition-colors"
+                      className="inline-flex items-center px-3 py-1 rounded-full text-xs font-mono uppercase tracking-wider bg-accent/10 text-accent border border-accent/20 hover:border-accent/40 transition-colors"
                     >
                       {tag}
                     </span>

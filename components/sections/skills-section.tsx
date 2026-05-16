@@ -112,9 +112,7 @@ export function SkillsSection() {
             <Card key={index} className="skill-card reveal group">
               <CardHeader className="cursor-pointer" onClick={() => toggleCategory(index)}>
                 <CardTitle className="flex items-center justify-between">
-                  <span className={`bg-gradient-to-r ${category.color} bg-clip-text text-transparent`}>
-                    {category.name}
-                  </span>
+                  <span className="text-foreground font-display">{category.name}</span>
                   {expandedCategories.has(index) ? (
                     <ChevronDown className="w-5 h-5 transition-transform" />
                   ) : (
@@ -129,7 +127,7 @@ export function SkillsSection() {
                     {category.skills.map((skill, skillIndex) => (
                       <span
                         key={skillIndex}
-                        className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-gradient-to-r from-blue-500/10 to-purple-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20 hover:border-blue-500/40 hover:bg-gradient-to-r hover:from-blue-500/20 hover:to-purple-500/20 transition-all duration-200 cursor-default"
+                        className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider bg-accent/10 text-accent border border-accent/20 hover:border-accent/40 hover:bg-accent/20 transition-all duration-200 cursor-default"
                       >
                         {skill}
                       </span>

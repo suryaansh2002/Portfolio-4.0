@@ -7,13 +7,12 @@ import { WorkExperienceSection } from "@/components/sections/work-experience-sec
 import { ResearchSection } from "@/components/sections/research-section"
 import { ContactSection } from "@/components/sections/contact-section"
 import { Header } from "@/components/layout/header"
-import { ParticleBackground } from "@/components/ui/particle-background"
+import { Footer } from "@/components/layout/footer"
 import { ScrollProgress } from "@/components/ui/scroll-progress"
 
 export default function Home() {
   return (
     <main className="relative min-h-screen">
-      <ParticleBackground />
       <ScrollProgress />
       <Header />
 
@@ -26,6 +25,7 @@ export default function Home() {
         <WorkExperienceSection />
         <ResearchSection />
         <ContactSection />
+        <Footer />
       </div>
     </main>
   )
