@@ -331,27 +331,45 @@
   font-family: var(--font-fraunces), Georgia, serif;
 }
 
-/* Tech chip — refined */
+/* Tech chip — refined, more tactile */
 .tech-chip {
   display: inline-flex;
   align-items: center;
-  padding: 0.25rem 0.65rem;
+  padding: 0.4rem 0.85rem;
   border-radius: 9999px;
   font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
-  font-size: 0.7rem;
+  font-size: 0.72rem;
+  line-height: 1;
+  letter-spacing: 0.005em;
   color: hsl(var(--color-text-secondary));
-  background-color: transparent;
-  border: 1px solid hsl(var(--color-border-subtle));
-  transition: all 200ms ease;
+  background-color: hsl(34 22% 18%);
+  border: 1px solid hsl(32 20% 32%);
+  box-shadow: inset 0 1px 0 hsl(var(--color-text-primary) / 0.04);
+  transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease,
+    transform 200ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 200ms ease;
   cursor: default;
+  user-select: none;
 }
 .tech-chip:hover {
-  border-color: hsl(var(--color-accent-muted));
-  color: hsl(var(--color-text-primary));
+  background-color: hsl(var(--color-accent) / 0.18);
+  border-color: hsl(var(--color-accent) / 0.55);
+  color: hsl(var(--color-accent-hover));
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px hsl(var(--color-accent) / 0.12), inset 0 1px 0 hsl(var(--color-text-primary) / 0.06);
 }
-.tech-chip--accent {
-  color: hsl(var(--color-accent));
-  border-color: hsl(var(--color-accent-muted));
+.tech-chip:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* Grouping container for chip sets */
+.chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.chip-group--tight {
+  gap: 0.35rem;
 }
 
 /* Animated link underline */

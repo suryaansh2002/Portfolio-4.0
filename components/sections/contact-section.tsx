@@ -64,7 +64,7 @@ export function ContactSection() {
             </button>
           </div>
           <p className="text-xs text-[hsl(var(--color-text-tertiary))] reveal mb-10">
-            30-minute call. Coffee chat energy, not interview energy.
+            30-minute call — happy to chat about anything AI, engineering, or otherwise.
           </p>
 
           <div className="reveal flex items-center justify-center gap-8">
@@ -80,8 +80,8 @@ export function ContactSection() {
             ))}
           </div>
 
-          <div className="reveal mt-14 pt-8 border-t border-[hsl(var(--color-border-subtle))] text-xs text-[hsl(var(--color-text-tertiary))] font-mono">
-            Based in Singapore &middot; Usually responds within 24 hours
+          <div className="reveal mt-14 pt-8 border-t border-[hsl(var(--color-border-subtle))] text-xs text-[hsl(var(--color-text-tertiary))] font-mono uppercase tracking-[0.2em]">
+            Based in Singapore
           </div>
         </div>
       </div>

@@ -19,9 +19,9 @@ export default function Home() {
       <div className="relative z-10">
         <HeroSection />
         <AboutSection />
+        <WorkExperienceSection />
         <ProjectsSection />
         <SkillsSection />
-        <WorkExperienceSection />
         <ResearchSection />
         <EducationSection />
         <ContactSection />

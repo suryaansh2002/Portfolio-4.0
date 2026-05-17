@@ -6,7 +6,6 @@ import { Calendar, ExternalLink } from "lucide-react"
 import { SectionLabel } from "@/components/ui/section-label"
 import moneyflo from "@/assets/moneyflo.png"
 import ridecell from "@/assets/ridecell.jpeg"
-import pefo from "@/assets/pefo.png"
 import kaiziq from "@/assets/kaiziq.png"
 import aidf from "@/assets/aidf.png"
 import datalensai from "@/assets/datalensai.png"
@@ -168,22 +167,6 @@ const workExperience: WorkEntry[] = [
       "Wrote comprehensive unit tests.",
     ],
   },
-  {
-    company: "PE Front Office",
-    duration: "Dec 2021 – Jan 2022",
-    logo: pefo,
-    website: "https://pefrontoffice.com/",
-    role: "Frontend Developer",
-    description:
-      "Worked on help-engine for alternative investment management platform. Enhanced user interface and implemented additional features.",
-    technologies: ["HTML", "CSS", "JavaScript", "jQuery", "Bootstrap"],
-    highlights: [
-      "Enhanced help-engine user interface.",
-      "Implemented new client-facing features.",
-      "Improved user experience for financial platform.",
-      "Worked with alternative investment management tools.",
-    ],
-  },
 ]
 
 export function WorkExperienceSection() {
@@ -211,7 +194,7 @@ export function WorkExperienceSection() {
     <section id="experience" ref={sectionRef} className="section-padding">
       <div className="container-custom">
         <div className="mb-16 reveal text-center">
-          <SectionLabel number="04" label="Experience" align="center" className="mb-4" />
+          <SectionLabel number="02" label="Experience" align="center" className="mb-4" />
           <h2 className="text-section-title">Experience</h2>
         </div>
 
@@ -271,12 +254,9 @@ export function WorkExperienceSection() {
                     </ul>
                   )}
 
-                  <div className="flex flex-wrap gap-1.5">
+                  <div className="chip-group chip-group--tight">
                     {work.technologies.map((tech, techIndex) => (
-                      <span
-                        key={techIndex}
-                        className={`tech-chip ${techIndex === 0 ? "tech-chip--accent" : ""}`}
-                      >
+                      <span key={techIndex} className="tech-chip">
                         {tech}
                       </span>
                     ))}

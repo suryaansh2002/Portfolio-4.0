@@ -121,13 +121,13 @@ export function EducationSection() {
           {education.map((edu, index) => (
             <article key={index} className="project-card card-hover reveal">
               <header className="flex flex-col sm:flex-row items-start gap-5 mb-4">
-                <div className="w-14 h-14 rounded-full overflow-hidden bg-[hsl(var(--color-text-primary))] flex items-center justify-center shrink-0">
+                <div className="w-16 h-16 rounded-full overflow-hidden bg-[hsl(var(--color-text-primary))] ring-1 ring-[hsl(var(--color-border-medium))] flex items-center justify-center shrink-0">
                   <Image
                     src={edu.logo}
                     alt={`${edu.institution} logo`}
-                    width={56}
-                    height={56}
-                    className="w-full h-full object-contain p-1.5"
+                    width={64}
+                    height={64}
+                    className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="flex-1 min-w-0">
@@ -172,7 +172,7 @@ export function EducationSection() {
                     expandedCards[index] ? "max-h-[600px] opacity-100 mt-4" : "max-h-0 opacity-0"
                   }`}
                 >
-                  <div className="flex flex-wrap gap-1.5">
+                  <div className="chip-group chip-group--tight">
                     {edu.courses.map((course, courseIndex) => (
                       <span key={courseIndex} className="tech-chip">
                         {course}

@@ -7,9 +7,9 @@ import { Button } from "@/components/ui/button"
 
 const navigation = [
   { name: "About", href: "#about" },
+  { name: "Experience", href: "#experience" },
   { name: "Projects", href: "#projects" },
   { name: "Skills", href: "#skills" },
-  { name: "Experience", href: "#experience" },
   { name: "Research", href: "#research" },
   { name: "Education", href: "#education" },
   { name: "Contact", href: "#contact" },
@@ -37,10 +37,10 @@ export function Header() {
 
   return (
     <header
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed top-0 w-full z-50 backdrop-blur-md transition-all duration-300 ${
         scrolled
-          ? "bg-[hsl(var(--color-bg-base)/0.85)] backdrop-blur-md border-b border-[hsl(var(--color-border-subtle))]"
-          : "bg-transparent"
+          ? "bg-[hsl(var(--color-bg-base)/0.92)] backdrop-blur-xl border-b border-[hsl(var(--color-border-subtle))] shadow-[0_4px_20px_hsl(var(--color-bg-base)/0.4)]"
+          : "bg-[hsl(var(--color-bg-base)/0.7)] border-b border-transparent"
       }`}
     >
       <nav className="container-custom px-4 sm:px-6 lg:px-8">

@@ -123,7 +123,7 @@ export function SkillsSection() {
     >
       <div className="container-custom">
         <div className="mb-12 reveal text-center">
-          <SectionLabel number="03" label="Skills" align="center" className="mb-4" />
+          <SectionLabel number="04" label="Skills" align="center" className="mb-4" />
           <h2 className="text-section-title">Skills</h2>
           <p className="text-base text-[hsl(var(--color-text-secondary))] max-w-2xl mx-auto mt-3">
             What I&rsquo;ve actually shipped with.
@@ -152,31 +152,28 @@ export function SkillsSection() {
         </div>
 
         {/* Skill panels */}
-        <div className="max-w-5xl mx-auto space-y-10">
+        <div className="max-w-5xl mx-auto space-y-5">
           {filtered.map((category) => {
             const Icon = category.icon
             return (
               <div
                 key={category.id}
-                className="reveal active"
+                className="reveal active rounded-2xl border border-[hsl(var(--color-border-subtle))] bg-[hsl(var(--color-bg-elevated)/0.35)] p-5 sm:p-6 transition-colors duration-300 hover:border-[hsl(var(--color-accent)/0.3)]"
               >
-                <div className="flex items-center gap-3 mb-5">
-                  <div className="w-9 h-9 rounded-full bg-accent/10 border border-accent/30 flex items-center justify-center text-accent">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-9 h-9 rounded-full bg-accent/10 border border-accent/30 flex items-center justify-center text-accent shrink-0">
                     <Icon className="w-4 h-4" />
                   </div>
-                  <h3 className="text-xl sm:text-2xl font-display text-[hsl(var(--color-text-primary))]">
+                  <h3 className="text-lg sm:text-xl font-display text-[hsl(var(--color-text-primary))]">
                     {category.name}
                   </h3>
-                  <span className="ml-auto font-mono text-xs text-[hsl(var(--color-text-tertiary))]">
+                  <span className="ml-auto font-mono text-[11px] text-[hsl(var(--color-text-tertiary))]">
                     {String(category.skills.length).padStart(2, "0")}
                   </span>
                 </div>
-                <div className="flex flex-wrap gap-2">
-                  {category.skills.map((skill, i) => (
-                    <span
-                      key={skill}
-                      className={`tech-chip ${i === 0 ? "tech-chip--accent" : ""}`}
-                    >
+                <div className="chip-group">
+                  {category.skills.map((skill) => (
+                    <span key={skill} className="tech-chip">
                       {skill}
                     </span>
                   ))}
@@ -191,7 +188,7 @@ export function SkillsSection() {
           <div className="grid grid-cols-3 gap-0 stats-row">
             <div className="text-center px-4 md:border-r md:border-[hsl(var(--color-border-subtle))]">
               <div className="font-display text-4xl sm:text-5xl text-accent mb-2 leading-none">
-                10+
+                6+
               </div>
               <div className="font-mono uppercase tracking-[0.2em] text-xs text-[hsl(var(--color-text-tertiary))]">
                 Projects

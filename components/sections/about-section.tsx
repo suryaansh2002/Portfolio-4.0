@@ -56,8 +56,8 @@ export function AboutSection() {
               Singapore in December 2025.
             </p>
             <p>
-              Before that I did a CS undergrad at Manipal, building production AI at startups in
-              parallel — credit risk platforms, NL2SQL engines, fine-tuned speech models, and
+              Before that I did a CS undergrad at Manipal, built production AI at startups in
+              parallel, credit risk platforms, NL2SQL engines, fine-tuned speech models, and
               agentic systems.
             </p>
             <p>
@@ -85,7 +85,7 @@ export function AboutSection() {
               style={{ animationDelay: "0ms" }}
             >
               <div className="font-display text-5xl sm:text-6xl text-accent mb-3 leading-none">
-                <CountUp end={3} suffix="+" />
+                <CountUp end={2} suffix="+" />
               </div>
               <div className="font-mono uppercase tracking-[0.2em] text-xs text-[hsl(var(--color-text-tertiary))]">
                 Years Experience

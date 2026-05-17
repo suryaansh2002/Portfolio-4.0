@@ -57,40 +57,6 @@ const projects = [
     certificate: "https://drive.google.com/file/d/1CNSnxxN68ZbROibg1_3gB_JncxbmDmhl/view?usp=sharing",
     tags: ["Automation", "Selenium", "Python", "Web Scraping"],
   },
-  {
-    title: "Psychup",
-    date: "February 2022",
-    description:
-      "A platform aimed at increasing awareness and providing content regarding psychology and mental health.",
-    github: "https://github.com/suryaansh2002/psychup",
-    website: "https://psychup.netlify.app/",
-    tags: ["React", "Node.js", "Content Platform"],
-  },
-  {
-    title: "Decrypt",
-    date: "February 2022",
-    description:
-      "Engineered the backend for an annual online cryptic hunt competition conducted by IEEE SBM, accommodating over 500 participants. The system ensures seamless user experience and robust performance during high-traffic events.",
-    github: "https://github.com/suryaansh2002/d3crypt_backend",
-    tags: ["Backend", "High Traffic", "IEEE"],
-  },
-  {
-    title: "Discussion Rooms",
-    date: "January 2022",
-    description:
-      "Developed a web application facilitating real-time discussions, built with an HTML-CSS frontend and a Python (Django) backend. The platform supports user authentication, topic creation, and interactive conversations.",
-    github: "https://github.com/suryaansh2002/Discussion_Rooms_Django_App",
-    tags: ["Django", "Python", "Real-time"],
-  },
-  {
-    title: "DataGrad",
-    date: "September 2021",
-    description:
-      "Developed a platform to bridge the gap between top MOOCs like Coursera, Udacity, EdX, and students eager to learn new skills. The application recommends the top 5 relevant courses based on the user's skill level and interests, simplifying the learning process.",
-    github: "https://github.com/suryaansh2002/datagrad",
-    website: "https://datagrad.netlify.app/",
-    tags: ["ML Recommendation", "Education"],
-  },
 ]
 
 export function ProjectsSection() {
@@ -129,7 +95,7 @@ export function ProjectsSection() {
     <section id="projects" ref={sectionRef} className="section-padding">
       <div className="container-custom">
         <div className="mb-16 reveal text-center">
-          <SectionLabel number="02" label="Projects" align="center" className="mb-4" />
+          <SectionLabel number="03" label="Projects" align="center" className="mb-4" />
           <h2 className="text-section-title">Projects</h2>
           <p className="text-base text-[hsl(var(--color-text-secondary))] max-w-2xl mx-auto mt-3">
             Selected work — production systems and side experiments.
@@ -153,12 +119,9 @@ export function ProjectsSection() {
                 {project.description}
               </p>
 
-              <div className="flex flex-wrap gap-1.5 mb-5 mt-auto">
+              <div className="chip-group chip-group--tight mb-5 mt-auto">
                 {project.tags.map((tag, tagIndex) => (
-                  <span
-                    key={tagIndex}
-                    className={`tech-chip ${tagIndex === 0 ? "tech-chip--accent" : ""}`}
-                  >
+                  <span key={tagIndex} className="tech-chip">
                     {tag}
                   </span>
                 ))}

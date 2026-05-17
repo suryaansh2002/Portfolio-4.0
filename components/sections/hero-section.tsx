@@ -43,7 +43,7 @@ export function HeroSection() {
           <div className="space-y-7 text-center lg:text-left">
             <div className="space-y-4">
               <div className="hero-line hero-line-1 font-mono uppercase tracking-[0.2em] text-xs text-[hsl(var(--color-text-secondary))]">
-                Hi, my name is
+                Hi, I am
               </div>
               <h1 className="hero-line hero-line-2 text-hero">
                 <span className="hero-name text-[hsl(var(--color-text-primary))]">
