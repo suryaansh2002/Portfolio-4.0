@@ -2,11 +2,10 @@
 
 import { useEffect, useRef } from "react"
 import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { Calendar } from "lucide-react"
 import { CountUp } from "@/components/ui/count-up"
-import about from '@/assets/about.png'
+import { SectionLabel } from "@/components/ui/section-label"
+import about from "@/assets/about.png"
+
 export function AboutSection() {
   const sectionRef = useRef<HTMLElement>(null)
 
@@ -19,7 +18,7 @@ export function AboutSection() {
           }
         })
       },
-      { threshold: 0.1 },
+      { threshold: 0.15 },
     )
 
     const elements = sectionRef.current?.querySelectorAll(".reveal")
@@ -28,126 +27,86 @@ export function AboutSection() {
     return () => observer.disconnect()
   }, [])
 
-  const handleConnect = () => {
-    window.open("https://calendly.com/suryaansh2002/connect-with-suryaansh", "_blank")
-  }
-
-  const scrollToSection = (sectionId: string) => {
-    document.querySelector(sectionId)?.scrollIntoView({ behavior: "smooth" })
-  }
-
   return (
-    <section id="about" ref={sectionRef} className="section-padding bg-muted/30">
+    <section id="about" ref={sectionRef} className="section-padding">
       <div className="container-custom">
-        <div className="text-center mb-16 reveal">
-          <h2 className="text-section-title gradient-text">About Me</h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Passionate about creating innovative solutions through technology and research
-          </p>
+        <div className="mb-16 reveal text-center">
+          <SectionLabel number="01" label="About" align="center" className="mb-4" />
+          <h2 className="text-section-title">About</h2>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-[auto,1fr] gap-12 items-start max-w-4xl mx-auto">
           {/* Profile Image */}
           <div className="relative flex justify-center reveal">
-            <div className="relative">
-              <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-2xl overflow-hidden glass-morphism p-4">
-                <Image
-                  src={about}
-                  alt="Suryaansh Rathinam - About"
-                  width={400}
-                  height={400}
-                  className="w-full h-full object-cover rounded-xl"
-                />
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent rounded-2xl"></div>
+            <div className="profile-photo-frame w-56 h-56 lg:w-64 lg:h-64">
+              <Image
+                src={about}
+                alt="Suryaansh Rathinam"
+                width={400}
+                height={400}
+                className="w-full h-full object-cover rounded-full"
+              />
             </div>
           </div>
 
           {/* Content */}
-          <div className="space-y-6 reveal">
-            <div className="space-y-4">
-              <h3 className="text-subsection-title">Hello, I'm Suryaansh Rathinam</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                I'm pursuing my Masters of Computing (AI Specialization) at the National University of Singapore.
-              </p>
-              <p className="text-muted-foreground leading-relaxed">
-                Proficient as a Full Stack Developer with experience in ML Development, I've constantly worked on
-                developing my skills by exploring various tech stacks, tools, and frameworks through diverse projects,
-                fostering an unceasing desire for learning and growth.
-              </p>
-              <p className="text-muted-foreground leading-relaxed">
-                Now I'm at{" "}
-                <a
-                  href="https://www.stengg.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-accent hover:text-accent-hover underline-offset-4 hover:underline transition-colors"
-                >
-                  ST Engineering
-                </a>
-                's R&amp;D division as a Senior AI Engineer. The work I'm drawn to lives at the intersection of AI
-                research, real-time systems, and product engineering — which is where I've been heading the whole time.
-              </p>
-            </div>
-
-            {/* Quick Links */}
-            <div className="grid grid-cols-2 gap-4">
-              <Card className="p-4 glass-morphism card-hover cursor-pointer" onClick={() => scrollToSection("#skills")}>
-                <h4 className="font-semibold mb-2">Skills & Technologies</h4>
-                <p className="text-sm text-muted-foreground">Explore my technical expertise</p>
-              </Card>
-              <Card
-                className="p-4 glass-morphism card-hover cursor-pointer"
-                onClick={() => scrollToSection("#projects")}
+          <div className="space-y-5 reveal text-base sm:text-lg leading-relaxed text-[hsl(var(--color-text-secondary))]">
+            <p>
+              I completed my Masters of Computing (AI Specialisation) at the National University of
+              Singapore in December 2025.
+            </p>
+            <p>
+              Before that I did a CS undergrad at Manipal, building production AI at startups in
+              parallel — credit risk platforms, NL2SQL engines, fine-tuned speech models, and
+              agentic systems.
+            </p>
+            <p>
+              Now I&rsquo;m at{" "}
+              <a
+                href="https://www.stengg.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="link-underline"
               >
-                <h4 className="font-semibold mb-2">Featured Projects</h4>
-                <p className="text-sm text-muted-foreground">View my latest work</p>
-              </Card>
-              <Card
-                className="p-4 glass-morphism card-hover cursor-pointer"
-                onClick={() => scrollToSection("#research")}
-              >
-                <h4 className="font-semibold mb-2">Research Work</h4>
-                <p className="text-sm text-muted-foreground">Academic publications</p>
-              </Card>
-              <Card className="p-4 glass-morphism card-hover cursor-pointer" onClick={handleConnect}>
-                <h4 className="font-semibold mb-2">Let's Connect</h4>
-                <p className="text-sm text-muted-foreground">Schedule a meeting</p>
-              </Card>
-            </div>
-
-            {/* CTA */}
-            <div className="pt-4">
-              <Button onClick={handleConnect} className="btn-primary">
-                <Calendar className="w-5 h-5 mr-2" />
-                Connect With Me
-              </Button>
-            </div>
+                ST Engineering
+              </a>
+              &rsquo;s R&amp;D division as a Senior AI Engineer. The work I&rsquo;m drawn to lives
+              at the intersection of AI research, real-time systems, and product engineering — which
+              is where I&rsquo;ve been heading the whole time.
+            </p>
           </div>
         </div>
 
         {/* Stats Block */}
-        <div className="mt-20 reveal">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0 md:divide-x divide-border max-w-4xl mx-auto stats-row">
-            <div className="text-center px-6 stat-item" style={{ animationDelay: "0ms" }}>
-              <div className="font-display text-5xl sm:text-6xl text-foreground mb-3">
-                <CountUp end={2} suffix="+" />
+        <div className="mt-24 reveal max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0 stats-row">
+            <div
+              className="text-center px-6 stat-item md:border-r md:border-[hsl(var(--color-border-subtle))]"
+              style={{ animationDelay: "0ms" }}
+            >
+              <div className="font-display text-5xl sm:text-6xl text-accent mb-3 leading-none">
+                <CountUp end={3} suffix="+" />
               </div>
-              <div className="font-mono uppercase tracking-[0.12em] text-xs text-muted-foreground">
+              <div className="font-mono uppercase tracking-[0.2em] text-xs text-[hsl(var(--color-text-tertiary))]">
                 Years Experience
               </div>
             </div>
-            <div className="text-center px-6 stat-item" style={{ animationDelay: "100ms" }}>
-              <div className="font-display text-5xl sm:text-6xl text-foreground mb-3">
+            <div
+              className="text-center px-6 stat-item md:border-r md:border-[hsl(var(--color-border-subtle))]"
+              style={{ animationDelay: "150ms" }}
+            >
+              <div className="font-display text-5xl sm:text-6xl text-accent mb-3 leading-none">
                 <CountUp end={3} />
               </div>
-              <div className="font-mono uppercase tracking-[0.12em] text-xs text-muted-foreground">
+              <div className="font-mono uppercase tracking-[0.2em] text-xs text-[hsl(var(--color-text-tertiary))]">
                 Publications
               </div>
             </div>
-            <div className="text-center px-6 stat-item" style={{ animationDelay: "200ms" }}>
-              <div className="font-display text-5xl sm:text-6xl text-foreground mb-3">NUS</div>
-              <div className="font-mono uppercase tracking-[0.12em] text-xs text-muted-foreground">
+            <div className="text-center px-6 stat-item" style={{ animationDelay: "300ms" }}>
+              <div className="font-display text-5xl sm:text-6xl text-accent mb-3 leading-none">
+                NUS
+              </div>
+              <div className="font-mono uppercase tracking-[0.2em] text-xs text-[hsl(var(--color-text-tertiary))]">
                 Masters in AI
               </div>
             </div>

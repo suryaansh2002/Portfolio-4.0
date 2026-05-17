@@ -21,9 +21,9 @@ export default function Home() {
         <AboutSection />
         <ProjectsSection />
         <SkillsSection />
-        <EducationSection />
         <WorkExperienceSection />
         <ResearchSection />
+        <EducationSection />
         <ContactSection />
         <Footer />
       </div>

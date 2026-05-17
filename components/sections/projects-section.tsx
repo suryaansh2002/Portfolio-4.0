@@ -1,95 +1,95 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Github, ExternalLink, Calendar, ChevronDown, ChevronUp } from "lucide-react"
+import { SectionLabel } from "@/components/ui/section-label"
 
 const projects = [
-{
-  title: "GMAIL Rag System",
-  date: "April 2025",
-  description:
-    "A full-stack AI application that enables users to query their Gmail content using natural language. Implements secure Gmail OAuth login, fetches emails and attachments, converts them into embeddings using sentence transformers, and stores them in Pinecone. Users can ask questions and receive contextually relevant answers powered by Ollama LLM. The system is architected with a FastAPI backend, Next.js frontend, and supports attachment processing (PDF, CSV, text).",
-  github: "https://github.com/suryaansh2002/gmail-rag",
-  tags: ["Next.js", "React", "Tailwind CSS", "FastAPI", "Python", "Pinecone", "Ollama", "OAuth", "Email AI", "RAG", "Vector DB"],
-},
+  {
+    title: "Gmail RAG System",
+    date: "April 2025",
+    description:
+      "A full-stack AI application that enables users to query their Gmail content using natural language. Implements secure Gmail OAuth login, fetches emails and attachments, converts them into embeddings using sentence transformers, and stores them in Pinecone. Users can ask questions and receive contextually relevant answers powered by Ollama LLM. The system is architected with a FastAPI backend, Next.js frontend, and supports attachment processing (PDF, CSV, text).",
+    github: "https://github.com/suryaansh2002/gmail-rag",
+    tags: ["RAG", "Next.js", "FastAPI", "Python", "Pinecone", "Ollama", "OAuth", "Vector DB"],
+  },
   {
     title: "Document and Video Q&A System",
-    date: "Feb 2025",
+    date: "February 2025",
     description:
       "A web app for uploading PDFs and YouTube videos, processing them into chunks, and interacting via chat. Uses MongoDB for document storage, Pinecone for vector retrieval, and OpenAI for responses. Features include document/video processing, vector storage, and a chat interface for querying.",
     github: "https://github.com/suryaansh2002/multi-doc-chat-rag",
     website: "https://multi-doc-chat-rag-client.vercel.app/",
-    tags: ["React", "MongoDB", "Pinecone", "OpenAI", "RAG", "Vector DB", "Youtube Videos"],
+    tags: ["RAG", "React", "MongoDB", "Pinecone", "OpenAI", "Vector DB"],
   },
   {
     title: "Real Time Meeting Summarizer",
-    date: "Nov 2024",
+    date: "November 2024",
     description:
       "Developed a Chrome extension with FastAPI backend that captures and processes real-time audio from browser tabs. Implemented an ML pipeline using OpenAI Whisper for transcription and Mistral-7B model for intelligent summarization, featuring speaker diarization and knowledge graph generation for contextual understanding.",
     github: "https://github.com/suryaansh2002/real_time_meeting_sumarizer",
-    tags: ["Chrome Extension", "FastAPI", "OpenAI Whisper", "Mistral-7B", "ML Pipeline"],
+    tags: ["ML Pipeline", "Chrome Extension", "FastAPI", "Whisper", "Mistral-7B"],
   },
   {
     title: "Distributed Maze Game",
-    date: "Oct 2024",
+    date: "October 2024",
     description:
       "Implemented multi-threaded server logic with dynamic server swapping for continuous operation, handling player crashes and asynchronous movements. Used TCP/Java RMI for reliable messaging and constructed a tracker-based player registry to enhance peer discovery and reduce system load, demonstrating fault-tolerance in gaming.",
     github: "https://github.com/suryaansh2002/cs5223-A1",
-    tags: ["Java", "TCP", "RMI", "Multi-threading", "Distributed Systems"],
+    tags: ["Distributed Systems", "Java", "TCP", "RMI", "Multi-threading"],
   },
   {
-    title: "IRCTC Tatlak Booking",
-    date: "Feb 2025",
+    title: "IRCTC Tatkal Booking",
+    date: "February 2025",
     description:
       "A desktop application built using Electron JS and Python to allow users to automate scheduling the booking process of Tatkal tickets from the Indian Railways IRCTC Website. This is done using Selenium for browser automation and apscheduler to schedule Cron jobs.",
     github: "https://github.com/suryaansh2002/IRCTC_Tatkal",
-    tags: ["Electron", "Python", "Selenium", "Automation", "Desktop App", "IRCTC"],
+    tags: ["Automation", "Electron", "Python", "Selenium"],
   },
   {
     title: "SLCM Automation",
-    date: "Sept 2023",
+    date: "September 2023",
     description:
       "Created a Selenium-based web scraping and automation tool to streamline data collection and form filling from the Student Lifecycle Management (SLCM) portal. This tool reduces manual effort and enhances data accuracy for academic processes.",
     github: "https://github.com/suryaansh2002/form_filling_automation",
     website: "https://mitcse.manipal.edu/mentor",
     certificate: "https://drive.google.com/file/d/1CNSnxxN68ZbROibg1_3gB_JncxbmDmhl/view?usp=sharing",
-    tags: ["Selenium", "Python", "Web Scraping", "Automation", "Manipal"],
+    tags: ["Automation", "Selenium", "Python", "Web Scraping"],
   },
   {
     title: "Psychup",
-    date: "Feb 2022",
+    date: "February 2022",
     description:
       "A platform aimed at increasing awareness and providing content regarding psychology and mental health.",
     github: "https://github.com/suryaansh2002/psychup",
     website: "https://psychup.netlify.app/",
-    tags: ["React", "Mental Health", "Content Platform", "NodeJS"],
+    tags: ["React", "Node.js", "Content Platform"],
   },
   {
     title: "Decrypt",
-    date: "Feb 2022",
+    date: "February 2022",
     description:
       "Engineered the backend for an annual online cryptic hunt competition conducted by IEEE SBM, accommodating over 500 participants. The system ensures seamless user experience and robust performance during high-traffic events.",
     github: "https://github.com/suryaansh2002/d3crypt_backend",
-    tags: ["Backend", "Competition Platform", "High Traffic", "IEEE"],
+    tags: ["Backend", "High Traffic", "IEEE"],
   },
   {
     title: "Discussion Rooms",
-    date: "Jan 2022",
+    date: "January 2022",
     description:
       "Developed a web application facilitating real-time discussions, built with an HTML-CSS frontend and a Python (Django) backend. The platform supports user authentication, topic creation, and interactive conversations.",
     github: "https://github.com/suryaansh2002/Discussion_Rooms_Django_App",
-    tags: ["Django", "Python", "Real-time", "Web App"],
+    tags: ["Django", "Python", "Real-time"],
   },
   {
     title: "DataGrad",
-    date: "Sept 2021",
+    date: "September 2021",
     description:
       "Developed a platform to bridge the gap between top MOOCs like Coursera, Udacity, EdX, and students eager to learn new skills. The application recommends the top 5 relevant courses based on the user's skill level and interests, simplifying the learning process.",
     github: "https://github.com/suryaansh2002/datagrad",
     website: "https://datagrad.netlify.app/",
-    tags: ["Course Recommendation", "MOOC", "Machine Learning", "Education"],
+    tags: ["ML Recommendation", "Education"],
   },
 ]
 
@@ -106,7 +106,7 @@ export function ProjectsSection() {
           }
         })
       },
-      { threshold: 0.1 },
+      { threshold: 0.15 },
     )
 
     const observeElements = () => {
@@ -114,10 +114,7 @@ export function ProjectsSection() {
       elements?.forEach((el) => observer.observe(el))
     }
 
-    // Initial observation
     observeElements()
-
-    // Re-observe when showAll changes
     const timeoutId = setTimeout(observeElements, 100)
 
     return () => {
@@ -131,80 +128,95 @@ export function ProjectsSection() {
   return (
     <section id="projects" ref={sectionRef} className="section-padding">
       <div className="container-custom">
-        <div className="text-center mb-16 reveal">
-          <h2 className="text-section-title gradient-text">My Projects</h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            A collection of projects showcasing my expertise in full-stack development, AI/ML, and system design
+        <div className="mb-16 reveal text-center">
+          <SectionLabel number="02" label="Projects" align="center" className="mb-4" />
+          <h2 className="text-section-title">Projects</h2>
+          <p className="text-base text-[hsl(var(--color-text-secondary))] max-w-2xl mx-auto mt-3">
+            Selected work — production systems and side experiments.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {displayedProjects.map((project, index) => (
-            <Card key={`${project.title}-${index}`} className="project-card reveal active group">
-              <CardHeader>
-                <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center text-sm text-muted-foreground">
-                    <Calendar className="w-4 h-4 mr-1" />
-                    {project.date}
-                  </div>
-                </div>
-                <CardTitle className="group-hover:gradient-text transition-all duration-300">{project.title}</CardTitle>
-                <CardDescription className="line-clamp-3">{project.description}</CardDescription>
-              </CardHeader>
+            <article
+              key={`${project.title}-${index}`}
+              className="project-card card-hover reveal group flex flex-col"
+            >
+              <div className="flex items-center gap-2 text-xs text-[hsl(var(--color-text-tertiary))] font-mono mb-3">
+                <Calendar className="w-3.5 h-3.5" />
+                {project.date}
+              </div>
+              <h3 className="text-xl font-display text-[hsl(var(--color-text-primary))] mb-3 group-hover:text-accent transition-colors">
+                {project.title}
+              </h3>
+              <p className="text-sm text-[hsl(var(--color-text-secondary))] leading-relaxed mb-5 line-clamp-3">
+                {project.description}
+              </p>
 
-              <CardContent className="space-y-4">
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag, tagIndex) => (
-                    <span
-                      key={tagIndex}
-                      className="inline-flex items-center px-3 py-1 rounded-full text-xs font-mono uppercase tracking-wider bg-accent/10 text-accent border border-accent/20 hover:border-accent/40 transition-colors"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+              <div className="flex flex-wrap gap-1.5 mb-5 mt-auto">
+                {project.tags.map((tag, tagIndex) => (
+                  <span
+                    key={tagIndex}
+                    className={`tech-chip ${tagIndex === 0 ? "tech-chip--accent" : ""}`}
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
 
-                <div className="flex gap-2">
+              <div className="flex gap-2">
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  onClick={() => window.open(project.github, "_blank")}
+                  className="flex-1 border border-[hsl(var(--color-border-subtle))] hover:border-accent hover:text-accent hover:bg-transparent"
+                >
+                  <Github className="w-4 h-4 mr-2" />
+                  Code
+                </Button>
+                {project.website && (
                   <Button
                     size="sm"
-                    variant="outline"
-                    onClick={() => window.open(project.github, "_blank")}
-                    className="flex-1"
+                    variant="ghost"
+                    onClick={() => window.open(project.website, "_blank")}
+                    className="flex-1 border border-[hsl(var(--color-border-subtle))] hover:border-accent hover:text-accent hover:bg-transparent"
                   >
-                    <Github className="w-4 h-4 mr-2" />
-                    Code
+                    <ExternalLink className="w-4 h-4 mr-2" />
+                    Demo
                   </Button>
-                  {project.website && (
-                    <Button size="sm" onClick={() => window.open(project.website, "_blank")} className="flex-1">
-                      <ExternalLink className="w-4 h-4 mr-2" />
-                      Demo
-                    </Button>
-                  )}
-                  {project.certificate && (
-                    <Button size="sm" variant="outline" onClick={() => window.open(project.certificate, "_blank")}>
-                      <ExternalLink className="w-4 h-4" />
-                    </Button>
-                  )}
-                </div>
-              </CardContent>
-            </Card>
+                )}
+                {project.certificate && (
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() => window.open(project.certificate, "_blank")}
+                    className="border border-[hsl(var(--color-border-subtle))] hover:border-accent hover:text-accent hover:bg-transparent"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                  </Button>
+                )}
+              </div>
+            </article>
           ))}
         </div>
 
         <div className="text-center mt-12 reveal">
-          <Button onClick={() => setShowAll(!showAll)} variant="outline" className="btn-secondary">
+          <button
+            onClick={() => setShowAll(!showAll)}
+            className="inline-flex items-center gap-2 font-mono uppercase tracking-[0.12em] text-xs text-[hsl(var(--color-text-secondary))] hover:text-accent transition-colors"
+          >
             {showAll ? (
               <>
-                <ChevronUp className="w-5 h-5 mr-2" />
-                Show Less
+                <ChevronUp className="w-4 h-4" />
+                Show less
               </>
             ) : (
               <>
-                <ChevronDown className="w-5 h-5 mr-2" />
-                Show All Projects ({projects.length - 3} more)
+                <ChevronDown className="w-4 h-4" />
+                Show all projects ({projects.length - 3} more)
               </>
             )}
-          </Button>
+          </button>
         </div>
       </div>
     </section>

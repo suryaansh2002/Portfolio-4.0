@@ -10,26 +10,28 @@
 
 @layer base {
   :root {
-    /* Editorial-meets-Technical palette */
-    --color-bg-base: 211 23% 8%;          /* #0F1419 */
-    --color-bg-elevated: 212 19% 12%;     /* #1A1F26 */
-    --color-bg-subtle: 212 21% 10%;       /* #14191F */
+    /* Editorial / warm direction (v2)
+       HSL values map to the hex codes documented in Updates.md PART 3.1 */
+    --color-bg-base: 32 28% 6%;           /* #14100B */
+    --color-bg-elevated: 33 25% 9%;       /* #1C1812 */
+    --color-bg-subtle: 35 31% 7%;         /* #18130D */
 
-    --color-text-primary: 42 33% 89%;     /* #ECE6D8 */
-    --color-text-secondary: 38 12% 59%;   /* #A39B8A */
-    --color-text-tertiary: 40 11% 38%;    /* #6B6555 */
+    --color-text-primary: 44 47% 90%;     /* #F0E9D8 */
+    --color-text-secondary: 36 22% 64%;   /* #B5A88F */
+    --color-text-tertiary: 36 13% 38%;    /* #6E6555 */
 
     --color-accent: 26 56% 62%;           /* #D49A6A */
-    --color-accent-hover: 26 64% 69%;     /* #E0AB7E */
+    --color-accent-hover: 27 67% 71%;     /* #E5B084 */
     --color-accent-muted: 27 35% 41%;     /* #8B6644 */
+    --color-accent-glow: 212 154 106;     /* rgba(212,154,106,a) — used with hsl alt below */
 
-    --color-border-subtle: 211 14% 19%;   /* #2A3138 */
-    --color-border-medium: 213 14% 29%;   /* #3F4853 */
+    --color-border-subtle: 33 28% 13%;    /* #2D2519 */
+    --color-border-medium: 30 24% 22%;    /* #45382A */
 
-    --color-success: 149 27% 61%;         /* #7FB89A */
-    --color-error: 0 41% 64%;             /* #C97C7C */
+    --color-success: 149 27% 61%;
+    --color-error: 0 41% 64%;
 
-    /* Map shadcn/tailwind semantic tokens onto the new palette */
+    /* Map shadcn/Tailwind semantic tokens onto the new palette */
     --background: var(--color-bg-base);
     --foreground: var(--color-text-primary);
     --card: var(--color-bg-elevated);
@@ -62,20 +64,20 @@
   }
 
   .dark {
-    --color-bg-base: 211 23% 8%;
-    --color-bg-elevated: 212 19% 12%;
-    --color-bg-subtle: 212 21% 10%;
+    --color-bg-base: 32 28% 6%;
+    --color-bg-elevated: 33 25% 9%;
+    --color-bg-subtle: 35 31% 7%;
 
-    --color-text-primary: 42 33% 89%;
-    --color-text-secondary: 38 12% 59%;
-    --color-text-tertiary: 40 11% 38%;
+    --color-text-primary: 44 47% 90%;
+    --color-text-secondary: 36 22% 64%;
+    --color-text-tertiary: 36 13% 38%;
 
     --color-accent: 26 56% 62%;
-    --color-accent-hover: 26 64% 69%;
+    --color-accent-hover: 27 67% 71%;
     --color-accent-muted: 27 35% 41%;
 
-    --color-border-subtle: 211 14% 19%;
-    --color-border-medium: 213 14% 29%;
+    --color-border-subtle: 33 28% 13%;
+    --color-border-medium: 30 24% 22%;
 
     --background: var(--color-bg-base);
     --foreground: var(--color-text-primary);

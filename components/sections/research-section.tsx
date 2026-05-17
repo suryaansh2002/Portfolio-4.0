@@ -1,32 +1,40 @@
 "use client"
 
 import { useEffect, useRef } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Download, ExternalLink, FileText, Award } from "lucide-react"
+import { Download, ExternalLink, FileText } from "lucide-react"
+import { SectionLabel } from "@/components/ui/section-label"
 
-const researchWork = [
-  {
-    title: "Image Segmentation and Analysis of Ultrasound of Mouse Kidney using CNN",
-    institution: "Medical Imaging and Theragnostic Lab, IIT Kharagpur",
-    duration: "Jun - Aug 2023",
-    type: "Research Internship",
-    certificate: "/KGP_Certificate.pdf",
-    description:
-      "Conducted research on medical image analysis using convolutional neural networks for ultrasound image segmentation of mouse kidney samples.",
-  },
-  {
-    title: "Analysis and Comparison of Different Frontend Frameworks",
-    authors: "Suryaansh Rathinam",
-    conference: "ATIS 2022 Conference",
-    publication: "Springer's CCIS Series (Volume 1804)",
-    publicationLink: "https://link.springer.com/chapter/10.1007/978-981-99-2264-2_19",
-    pdf: "/SuryaanshRathinam_ComparisonOfFrontendFrameworks.pdf",
-    type: "Conference Paper",
-    description:
-      "Comprehensive analysis and performance comparison of popular frontend frameworks including React, Vue.js, and Angular.",
-  },
+type ResearchItem = {
+  title: string
+  authors?: string
+  institution?: string
+  conference?: string
+  conferenceLink?: string
+  publication?: string
+  publicationLink?: string
+  pdf?: string
+  certificate?: string
+  type: string
+  description: string
+  abstractExcerpt?: string
+  duration?: string
+}
+
+const featured: ResearchItem = {
+  title: "Exploring IoT-Blockchain Integration in Agriculture: An Experimental Study",
+  authors: "Namrata Mariam Chacko, Dr. V. G Narendra, Dr. Mamatha Balachandra, Suryaansh Rathinam",
+  publication: "IEEE Access",
+  publicationLink: "https://ieeexplore.ieee.org/document/10323331",
+  pdf: "/Exploring_IoT-Blockchain_Integration_in_Agriculture_An_Experimental_Study.pdf",
+  type: "IEEE Access",
+  description:
+    "Experimental study on the integration of IoT and blockchain technologies in agricultural applications.",
+  abstractExcerpt:
+    "An experimental study examining how IoT sensors and blockchain ledgers can be combined to improve traceability, trust, and data integrity in agricultural supply chains.",
+}
+
+const others: ResearchItem[] = [
   {
     title:
       "Survey of the use of AI models and techniques in the analysis and prediction of neuro-degenerative diseases",
@@ -41,16 +49,34 @@ const researchWork = [
       "Comprehensive survey of artificial intelligence applications in neurodegenerative disease analysis and prediction.",
   },
   {
-    title: "Exploring IoT-Blockchain Integration in Agriculture: An Experimental Study",
-    authors: "Namrata Mariam Chacko, Dr. V. G Narendra, Dr. Mamatha Balachandra, Suryaansh Rathinam",
-    publication: "IEEE Access",
-    publicationLink: "https://ieeexplore.ieee.org/document/10323331",
-    pdf: "/Exploring_IoT-Blockchain_Integration_in_Agriculture_An_Experimental_Study.pdf",
-    type: "IEEE Paper",
+    title: "Analysis and Comparison of Different Frontend Frameworks",
+    authors: "Suryaansh Rathinam",
+    conference: "ATIS 2022 Conference",
+    publication: "Springer's CCIS Series (Volume 1804)",
+    publicationLink: "https://link.springer.com/chapter/10.1007/978-981-99-2264-2_19",
+    pdf: "/SuryaanshRathinam_ComparisonOfFrontendFrameworks.pdf",
+    type: "Conference Paper",
     description:
-      "Experimental study on the integration of IoT and blockchain technologies in agricultural applications.",
+      "Comprehensive analysis and performance comparison of popular frontend frameworks including React, Vue.js, and Angular.",
   },
 ]
+
+const researchInternship: ResearchItem = {
+  title: "Image Segmentation and Analysis of Ultrasound of Mouse Kidney using CNN",
+  institution: "Medical Imaging and Theragnostic Lab, IIT Kharagpur",
+  duration: "Jun – Aug 2023",
+  type: "Research Internship",
+  certificate: "/KGP_Certificate.pdf",
+  description:
+    "Conducted research on medical image analysis using convolutional neural networks for ultrasound image segmentation of mouse kidney samples.",
+}
+
+function handleDownload(url: string) {
+  const link = document.createElement("a")
+  link.href = url
+  link.download = url.split("/").pop() || "document.pdf"
+  link.click()
+}
 
 export function ResearchSection() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -64,7 +90,7 @@ export function ResearchSection() {
           }
         })
       },
-      { threshold: 0.1 },
+      { threshold: 0.15 },
     )
 
     const elements = sectionRef.current?.querySelectorAll(".reveal")
@@ -73,134 +99,167 @@ export function ResearchSection() {
     return () => observer.disconnect()
   }, [])
 
-  const handleDownload = (url: string) => {
-    const link = document.createElement("a")
-    link.href = url
-    link.download = url.split("/").pop() || "document.pdf"
-    link.click()
-  }
-
   return (
     <section id="research" ref={sectionRef} className="section-padding">
       <div className="container-custom">
-        <div className="text-center mb-16 reveal">
-          <h2 className="text-section-title gradient-text">Research Work</h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Academic publications and research contributions in AI, computer science, and interdisciplinary fields
+        <div className="mb-16 reveal text-center">
+          <SectionLabel number="05" label="Research" align="center" className="mb-4" />
+          <h2 className="text-section-title">Research</h2>
+          <p className="text-base text-[hsl(var(--color-text-secondary))] max-w-2xl mx-auto mt-3">
+            Peer-reviewed publications and research projects.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {researchWork.map((research, index) => (
-            <Card key={index} className="project-card reveal group">
-              <CardHeader>
-                <div className="flex items-start justify-between mb-3">
-                  <Badge variant="secondary" className="mb-2">
-                    <Award className="w-3 h-3 mr-1" />
-                    {research.type}
-                  </Badge>
+        <div className="max-w-5xl mx-auto space-y-8">
+          {/* Featured: IEEE Access paper */}
+          <article className="project-card card-hover reveal relative">
+            <span className="absolute top-4 right-4 font-mono uppercase tracking-[0.2em] text-[10px] text-accent border border-accent/40 rounded-full px-2 py-0.5">
+              Featured
+            </span>
+            <div className="font-mono uppercase tracking-[0.2em] text-[11px] text-[hsl(var(--color-text-tertiary))] mb-3">
+              {featured.type}
+            </div>
+            <h3 className="text-xl sm:text-2xl font-display text-[hsl(var(--color-text-primary))] leading-tight mb-4 max-w-3xl">
+              {featured.title}
+            </h3>
+            <p className="text-sm text-[hsl(var(--color-text-secondary))] mb-2">
+              <span className="text-[hsl(var(--color-text-tertiary))]">Authors:</span>{" "}
+              {featured.authors}
+            </p>
+            <p className="text-sm text-[hsl(var(--color-text-secondary))] leading-relaxed mb-5 max-w-3xl">
+              {featured.abstractExcerpt}
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {featured.publicationLink && (
+                <Button
+                  size="sm"
+                  onClick={() => window.open(featured.publicationLink, "_blank")}
+                  className="btn-primary inline-flex items-center"
+                >
+                  <ExternalLink className="w-4 h-4 mr-2" />
+                  View on IEEE
+                </Button>
+              )}
+              {featured.pdf && (
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  onClick={() => handleDownload(featured.pdf!)}
+                  className="btn-secondary inline-flex items-center"
+                >
+                  <Download className="w-4 h-4 mr-2" />
+                  PDF
+                </Button>
+              )}
+            </div>
+          </article>
+
+          {/* Other publications */}
+          <div className="grid md:grid-cols-2 gap-6">
+            {others.map((paper, index) => (
+              <article key={index} className="project-card card-hover reveal flex flex-col">
+                <div className="font-mono uppercase tracking-[0.2em] text-[11px] text-accent mb-3">
+                  {paper.type}
                 </div>
-
-                <CardTitle className="text-lg leading-tight group-hover:gradient-text transition-all duration-300">
-                  {research.title}
-                </CardTitle>
-
-                <div className="space-y-2 text-sm text-muted-foreground">
-                  {research.authors && (
+                <h3 className="text-lg font-display text-[hsl(var(--color-text-primary))] leading-tight mb-3">
+                  {paper.title}
+                </h3>
+                <div className="space-y-1 text-xs text-[hsl(var(--color-text-secondary))] mb-3">
+                  {paper.authors && (
                     <p>
-                      <strong>Authors:</strong> {research.authors}
+                      <span className="text-[hsl(var(--color-text-tertiary))]">Authors:</span>{" "}
+                      {paper.authors}
                     </p>
                   )}
-                  {research.institution && (
+                  {paper.conference && (
                     <p>
-                      <strong>Institution:</strong> {research.institution}
+                      <span className="text-[hsl(var(--color-text-tertiary))]">Conference:</span>{" "}
+                      {paper.conference}
                     </p>
                   )}
-                  {research.conference && (
+                  {paper.publication && (
                     <p>
-                      <strong>Conference:</strong> {research.conference}
-                    </p>
-                  )}
-                  {research.publication && (
-                    <p>
-                      <strong>Publication:</strong> {research.publication}
-                    </p>
-                  )}
-                  {research.duration && (
-                    <p>
-                      <strong>Duration:</strong> {research.duration}
+                      <span className="text-[hsl(var(--color-text-tertiary))]">Publication:</span>{" "}
+                      {paper.publication}
                     </p>
                   )}
                 </div>
-              </CardHeader>
-
-              <CardContent className="space-y-4">
-                <p className="text-muted-foreground text-sm leading-relaxed">{research.description}</p>
-
-                <div className="flex flex-wrap gap-2">
-                  {research.pdf && (
+                <p className="text-sm text-[hsl(var(--color-text-secondary))] leading-relaxed mb-4 flex-1">
+                  {paper.description}
+                </p>
+                <div className="flex flex-wrap gap-2 mt-auto">
+                  {paper.pdf && (
                     <Button
                       size="sm"
-                      variant="outline"
-                      onClick={() => handleDownload(research.pdf!)}
-                      className="flex-1 min-w-0"
+                      variant="ghost"
+                      onClick={() => handleDownload(paper.pdf!)}
+                      className="btn-secondary inline-flex items-center !py-2 !px-4 text-xs"
                     >
-                      <Download className="w-4 h-4 mr-2" />
+                      <Download className="w-3.5 h-3.5 mr-1.5" />
                       PDF
                     </Button>
                   )}
-                  {research.certificate && (
+                  {paper.publicationLink && (
                     <Button
                       size="sm"
-                      variant="outline"
-                      onClick={() => handleDownload(research.certificate!)}
-                      className="flex-1 min-w-0"
+                      variant="ghost"
+                      onClick={() => window.open(paper.publicationLink, "_blank")}
+                      className="btn-secondary inline-flex items-center !py-2 !px-4 text-xs"
                     >
-                      <Download className="w-4 h-4 mr-2" />
-                      Certificate
-                    </Button>
-                  )}
-                  {research.publicationLink && (
-                    <Button
-                      size="sm"
-                      onClick={() => window.open(research.publicationLink, "_blank")}
-                      className="flex-1 min-w-0"
-                    >
-                      <ExternalLink className="w-4 h-4 mr-2" />
+                      <ExternalLink className="w-3.5 h-3.5 mr-1.5" />
                       View
                     </Button>
                   )}
-                  {research.conferenceLink && (
-                    <Button size="sm" variant="ghost" onClick={() => window.open(research.conferenceLink, "_blank")}>
-                      <FileText className="w-4 h-4 mr-2" />
+                  {paper.conferenceLink && (
+                    <Button
+                      size="sm"
+                      variant="ghost"
+                      onClick={() => window.open(paper.conferenceLink, "_blank")}
+                      className="btn-secondary inline-flex items-center !py-2 !px-4 text-xs"
+                    >
+                      <FileText className="w-3.5 h-3.5 mr-1.5" />
                       Conference
                     </Button>
                   )}
                 </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+              </article>
+            ))}
+          </div>
 
-        {/* Research Stats */}
-        <div className="mt-16 text-center reveal">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div className="space-y-2">
-              <div className="text-3xl font-bold gradient-text">4</div>
-              <div className="text-muted-foreground">Publications</div>
-            </div>
-            <div className="space-y-2">
-              <div className="text-3xl font-bold gradient-text">3</div>
-              <div className="text-muted-foreground">Conferences</div>
-            </div>
-            <div className="space-y-2">
-              <div className="text-3xl font-bold gradient-text">2</div>
-              <div className="text-muted-foreground">Journals</div>
-            </div>
-            <div className="space-y-2">
-              <div className="text-3xl font-bold gradient-text">1</div>
-              <div className="text-muted-foreground">Research Internship</div>
-            </div>
+          {/* Research experience */}
+          <div className="reveal pt-6">
+            <h3 className="font-mono uppercase tracking-[0.2em] text-xs text-[hsl(var(--color-text-tertiary))] mb-5">
+              Research Experience
+            </h3>
+            <article className="project-card card-hover">
+              <h4 className="text-lg font-display text-[hsl(var(--color-text-primary))] leading-tight mb-2">
+                {researchInternship.title}
+              </h4>
+              <div className="text-xs text-[hsl(var(--color-text-secondary))] mb-3 space-y-1">
+                <p>
+                  <span className="text-[hsl(var(--color-text-tertiary))]">Institution:</span>{" "}
+                  {researchInternship.institution}
+                </p>
+                <p>
+                  <span className="text-[hsl(var(--color-text-tertiary))]">Duration:</span>{" "}
+                  {researchInternship.duration}
+                </p>
+              </div>
+              <p className="text-sm text-[hsl(var(--color-text-secondary))] leading-relaxed mb-4">
+                {researchInternship.description}
+              </p>
+              {researchInternship.certificate && (
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  onClick={() => handleDownload(researchInternship.certificate!)}
+                  className="btn-secondary inline-flex items-center !py-2 !px-4 text-xs"
+                >
+                  <Download className="w-3.5 h-3.5 mr-1.5" />
+                  Certificate
+                </Button>
+              )}
+            </article>
           </div>
         </div>
       </div>

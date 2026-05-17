@@ -1,589 +1,695 @@
-# Portfolio Update Specification
+# Portfolio Update Specification v2
 
-**Target site:** suryaanshrathinam.com
-**Stack assumption:** Next.js (based on `_next/image` paths). Adjust file references if structure differs.
-**Goal:** Update content to reflect new role at ST Engineering, fix outdated/incorrect data, overhaul visual system away from generic-AI-portfolio aesthetic, add `/now` page, improve SEO.
+**Replaces** the previous `portfolio-updates.md` entirely. Drop the old file.
+
+**Target site:** suryaanshrathinam.com (production)
+**Stack:** Next.js App Router (inferred from `_next/image` paths and route structure)
+**Context for Claude Code:** This site was updated once before. Most content changes landed, but the visual system did NOT — the site still reads as a monochrome default-dark template with no accent color, no atmosphere, and no consistent visual hierarchy. This spec is explicit about every visual change, with grep instructions where needed, so the warm palette and motion actually land this time.
 
 ---
 
-## Part 1 — Content Updates
+## How to read this doc
 
-### 1.1 Hero Section
+Each section has either:
+- **EXACT TEXT** — copy-paste this verbatim
+- **TOKEN VALUES** — use these exact CSS variable names and hex codes
+- **GREP HINTS** — search the codebase for these patterns to find what to change
+- **REASONING** — context, optional to read
 
-**Current copy (third sentence of hero subtitle):**
+If you find conflicts between this doc and existing code, this doc wins.
 
-> "...Currently building a Meeting Intelligence Platform at [ThoutAI](https://thout.ai/)."
+---
+
+## PART 1 — Critical Content Fixes
+
+These didn't land last time. Fix them first.
+
+### 1.1 About — Paragraph 1 (past tense, Masters completed)
+
+**Find this exact text** in the About section:
+
+> I'm pursuing my Masters of Computing (AI Specialization) at the National University of Singapore.
 
 **Replace with:**
 
-> "...Currently a Senior AI Engineer at [ST Engineering](https://www.stengg.com/)."
+> I completed my Masters of Computing (AI Specialisation) at the National University of Singapore in December 2025.
 
-**Full updated hero subtitle:**
+Two changes: tense + UK spelling of "Specialisation."
 
-> I turn research into real products — from fine-tuning ML models to deploying the full-stack systems that put them in users' hands. Currently a Senior AI Engineer at [ST Engineering](https://www.stengg.com/).
+### 1.2 About — Paragraph 2 (replace generic copy)
 
----
+**Find this exact text:**
 
-### 1.2 About Section — Third Paragraph
-
-**Current text:**
-
-> Right now at [ThoutAI](https://thout.ai/), I'm leading the backend and AI team — architecting the infrastructure behind a Meeting Intelligence Platform that turns conversations into action. The work sits at the intersection of AI agents, real-time systems, and product engineering, which is exactly where I like to be.
+> Proficient as a Full Stack Developer with experience in ML Development, I've constantly worked on developing my skills by exploring various tech stacks, tools, and frameworks through diverse projects, fostering an unceasing desire for learning and growth.
 
 **Replace with:**
 
-> Now I'm at [ST Engineering](https://www.stengg.com/)'s R&D division as a Senior AI Engineer. The work I'm drawn to lives at the intersection of AI research, real-time systems, and product engineering — which is where I've been heading the whole time.
+> Before that I did a CS undergrad at Manipal, building production AI at startups in parallel — credit risk platforms, NL2SQL engines, fine-tuned speech models, and agentic systems.
 
-First two paragraphs of the About section remain unchanged.
+Reasoning: the current copy is the weakest writing on the page. It reads like a fresher's cover letter. The replacement names actual work and gives readers something specific to remember.
 
----
+### 1.3 About — Paragraph 3 (already correct, leave alone)
 
-### 1.3 Stats Block (under About)
+Current text is fine:
 
-**Content stays exactly as-is:**
+> Now I'm at ST Engineering's R&D division as a Senior AI Engineer. The work I'm drawn to lives at the intersection of AI research, real-time systems, and product engineering — which is where I've been heading the whole time.
 
-- 2+ Years Experience
-- 3 Publications
-- NUS Masters in AI
+### 1.4 Stats hero values (currently broken)
 
-**UI/animation updates (see Part 3 for full spec):**
-- Count-up animation on the numbers when the section enters viewport (use intersection observer)
-- Numerals in display serif font, label in mono caps
-- Subtle vertical dividers between the three stats instead of horizontal stacking on desktop
-- Stagger entry: each stat fades + translates up with a 100ms delay between them
+The stats currently display "0+" Years Experience and "1" Publications. The count-up targets are wrong.
 
----
+Find the stat component data/props. Update to:
 
-### 1.4 Experience Section
+| Display label | Target value | Suffix |
+|---|---|---|
+| Years Experience | `3` | `+` |
+| Publications | `3` | (none) |
+| Masters in AI | `NUS` | (text, no count-up) |
 
-**Add as new top entry (most recent):**
+**Verify after change:** Load the site, scroll to the About stats, wait for count-up to finish. Should read `3+`, `3`, `NUS`. If the third stat ("NUS") is animating as a number, exclude it from the count-up component.
 
-```
-Senior AI Engineer
-ST Engineering — https://www.stengg.com/
-May 2026 – Present · Singapore
+### 1.5 Contact section copy (currently contradicts employment status)
 
-Senior AI Engineer in the Research & Development division.
+**Find this exact text:**
 
-Tags: Python · AI/ML · R&D
-```
+> I'm currently open to new opportunities, freelance projects, and interesting collaborations. I'm particularly interested in projects involving AI/ML, full-stack development, or research opportunities.
 
-*(Description intentionally minimal — replace with project specifics as work crystallizes.)*
+**Replace with:**
 
-**Update existing ThoutAI entry:**
+> Happy to talk applied AI, LLM systems, agents, RAG, or the engineering side of shipping ML products. Not actively looking, but always up for an interesting conversation.
 
-- Change end date: `Aug 2025 – Present` → `Aug 2025 – Apr 2026`
-- Change all verbs to past tense:
-  - "Leading the backend and AI team..." → "Led the backend and AI team..."
-  - "Architecting backend services..." → "Architected backend services..."
-  - "Building AI Agents..." → "Built AI Agents..."
-  - "Developing the frontend interface..." → "Developed the frontend interface..."
+**Find:**
 
-All other entries (DatalensAI, AIDF NUS, Moneyflo, Ridecell, KaizIQ, NUS TA) remain unchanged.
+> Based in Singapore • Available for remote work worldwide
 
----
+**Replace with:**
 
-### 1.5 Education Section
+> Based in Singapore
 
-**GPA updates (matching official LinkedIn values):**
+**Find:**
 
-- **NUS:** `GPA: 4.63 / 5` → `GPA: 4.45 / 5`
-- **Manipal Institute of Technology:** `GPA: 9.47 / 10` → `GPA: 9.30 / 10`
+> Book a 30-minute call to discuss opportunities, projects, or just to chat!
 
-All other education content unchanged.
+**Replace with:**
 
----
+> 30-minute call. Coffee chat energy, not interview energy.
 
-### 1.6 Projects Section
+**Find:**
 
-**Fix duplicate GitHub URL bug.** Currently both "Gmail RAG System" and "Document & Video Q&A System" point to `https://github.com/suryaansh2002/multi-doc-chat-rag`.
+> Ready to Connect? Let's build something amazing together!
 
-**Update Gmail RAG System project links to:**
+**Replace with:**
 
-- GitHub: `https://github.com/suryaansh2002/gmail-rag`
+> Reach out
 
-**Document & Video Q&A System keeps:**
-- GitHub: `https://github.com/suryaansh2002/multi-doc-chat-rag`
-- Live demo: `https://multi-doc-chat-rag-client.vercel.app/`
+(The "Ready to Connect / Let's build something amazing" copy is generic LinkedIn-influencer-speak. Replace with something direct.)
 
----
+### 1.6 Project title capitalization
 
-### 1.7 Social Links — LeetCode URL Fix
+**Find:** `GMAIL Rag System`
+**Replace with:** `Gmail RAG System`
 
-**Current (incorrect):**
-```
-https://leetcode.com/suryaanshrathinam/
-```
+Gmail is the product name (title case), RAG is an acronym (all caps).
 
-**Replace with (correct):**
-```
-https://leetcode.com/suryaansh28
-```
+### 1.7 Date format consistency
 
-Update everywhere the LeetCode link appears (likely hero section, contact section, and footer — search for `leetcode.com` across the codebase).
+The site mixes `2024-2025`, `May '26 - Present`, `Aug '25 - Apr '26`. Standardize everywhere to:
 
----
+- **Education:** `Aug 2024 – Dec 2025` (en-dash, full month, full year)
+- **Experience:** `May 2026 – Present` and `Aug 2025 – Apr 2026` (same format)
+- **Projects:** `April 2025` (single date, full month, full year)
 
-## Part 2 — New `/now` Page
+Use `–` (en-dash, U+2013) for ranges, not `-` (hyphen).
 
-Create a new route at `/now` with the following content. Inspired by [Derek Sivers' /now movement](https://nownownow.com/about).
+### 1.8 Spelling: "Specialisation" not "Specialization"
 
-**Page metadata:**
-- Title: `Now — Suryaansh Rathinam`
-- Meta description: `What Suryaansh Rathinam is working on, learning, and thinking about right now.`
-- No new entry in main nav. Add a small text link in the footer: `/now`.
+Singapore uses British English, and NUS spells it "Specialisation" on transcripts.
 
-**Page content:**
+**Grep:** `Specialization` → replace all with `Specialisation`.
 
-```markdown
-# What I'm doing now
+### 1.9 Featured Cards row (remove)
 
-*Last updated: May 2026*
+In the About section, below the bio paragraphs, there's a 2x2 grid of "feature" cards:
+
+- Skills & Technologies — Explore my technical expertise
+- Featured Projects — View my latest work
+- Research Work — Academic publications
+- Let's Connect — Schedule a meeting
+
+**Remove this entire block.** The main nav already has Skills, Projects, Research, Contact. These cards add visual noise without adding navigation value. Also remove the "Connect With Me" button directly below them.
 
 ---
 
-## Location
-Singapore, just back from a trip to India.
+## PART 2 — Files to Remove
 
-## Work
-Started at ST Engineering's R&D division as a Senior AI Engineer earlier this month. Still in the settling-in phase — meeting people, mapping the landscape, figuring out where I can be most useful. Will write more here once the work crystallizes.
+### 2.1 Delete `/now` page
 
-## What I'm thinking about
+Remove the route entirely:
+- Delete `app/now/page.tsx` (or `pages/now.tsx`, whichever exists)
+- Delete `app/now/` directory if empty after page deletion
 
-- **The agent stack.** Which abstractions hold up in production and which are scaffolding pretending to be primitives. MCP feels like it's becoming load-bearing faster than people expected.
-- **Fine-tuning as a first-class skill again.** RAG-everything was a phase. For domain-specific work, fine-tuning a 7B–13B model often beats prompting a frontier one — and the tooling has finally caught up.
-- **The research-to-product gap in AI** is narrower than it's ever been, but the engineering around inference, evaluation, and reliability is still where most of the time actually goes.
+### 2.2 Remove `/now` from footer
 
-## What I'm learning
-
-- The internals of vLLM and Triton — wanted to understand serving infrastructure beyond "you put a model behind an API."
-- Reading more research papers than I did during the Masters, which is funny — the cadence is just different when there's no exam at the end.
-
-## Side things
-
-- Slowly writing up some of the projects from my Masters — the Real-Time Meeting Summarizer in particular deserves a proper post rather than just a GitHub README.
-- Starting to post on LinkedIn more deliberately. Trying to find a voice for short technical notes without crossing into LinkedIn-influencer territory.
-
-## Not doing
-
-- Chasing every new framework. The half-life of the AI tooling space is too short to be early on everything.
-- Side-project-as-launch. The bar for "thing worth shipping" is higher than it used to be.
+Find the footer where the `/NOW` link appears in mono caps next to `GITHUB` and `LINKEDIN`. Remove the `/NOW` link. Keep GITHUB and LINKEDIN.
 
 ---
 
-*This page is inspired by [Derek Sivers' /now](https://nownownow.com/about) — a single page that says what I'm working on right now, updated whenever something meaningful shifts.*
-```
+## PART 3 — Visual System (the actual visual overhaul)
 
-**Styling notes for /now page:**
-- Use the same theme tokens as the rest of the site
-- Display font for the `#` heading
-- Body font for paragraphs, mono small-caps for the "Last updated" line
-- Generous line-height (1.7) and max-width ~640px for readability
-- Use the accent color for the inline links
+### 3.1 Color palette — WARM editorial direction
 
----
+The current site is essentially `#000000` and `#FFFFFF` with no accent. This is the most important change in the spec. **Read this entire section carefully.**
 
-## Part 3 — Visual System Overhaul
-
-### 3.1 Aesthetic Direction
-
-**Current state:** Brittany Chiang–style template with blue accent — common in the AI-engineer-portfolio space, reads as generic.
-
-**New direction: Editorial-meets-Technical.**
-
-Warm cream foreground on deep ink background, single terracotta/copper accent, distinctive serif display font paired with refined sans body and mono accents. Signals research + engineering craft. Distinctive without being chaotic.
-
-**Reference points:** The Browser Company landing pages, older Stripe blog posts, MIT Technology Review online, Plain Text Journal aesthetic.
-
----
-
-### 3.2 Color Tokens
-
-Replace existing color variables with these. Use CSS custom properties / Tailwind config / whatever the codebase uses.
+**Step 1 — Define these CSS variables** in the global stylesheet (`globals.css` or equivalent):
 
 ```css
 :root {
-  /* Backgrounds */
-  --color-bg-base: #0F1419;        /* Deep ink — primary background */
-  --color-bg-elevated: #1A1F26;    /* Cards, elevated surfaces */
-  --color-bg-subtle: #14191F;      /* Section dividers, subtle fills */
+  /* Backgrounds — warm, layered */
+  --color-bg-base: #14100B;          /* Deep warm-tinted near-black (NOT pure black) */
+  --color-bg-elevated: #1C1812;      /* Cards, slightly lifted surfaces */
+  --color-bg-subtle: #18130D;        /* Section dividers, very subtle differentiation */
 
   /* Foreground / text */
-  --color-text-primary: #ECE6D8;   /* Warm cream — headings, body */
-  --color-text-secondary: #A39B8A; /* Muted warm gray — meta, captions */
-  --color-text-tertiary: #6B6555;  /* Very muted — labels, footnotes */
+  --color-text-primary: #F0E9D8;     /* Warm cream — primary body and headings */
+  --color-text-secondary: #B5A88F;   /* Muted warm beige — meta, captions, secondary */
+  --color-text-tertiary: #6E6555;    /* Muted warm gray — labels, footnotes */
 
-  /* Accent (replaces all current blues) */
-  --color-accent: #D49A6A;         /* Warm terracotta/copper */
-  --color-accent-hover: #E0AB7E;   /* Lighter on hover */
-  --color-accent-muted: #8B6644;   /* Darker variant for backgrounds */
+  /* Accent — warm terracotta */
+  --color-accent: #D49A6A;           /* Primary accent — links, key interactive */
+  --color-accent-hover: #E5B084;     /* Hover state, slightly brighter */
+  --color-accent-muted: #8B6644;     /* Darker accent, used in subtle washes */
+  --color-accent-glow: rgba(212, 154, 106, 0.15);  /* For glow effects, hover halos */
 
   /* Borders & dividers */
-  --color-border-subtle: #2A3138;
-  --color-border-medium: #3F4853;
+  --color-border-subtle: #2D2519;
+  --color-border-medium: #45382A;
 
-  /* Semantic (use sparingly) */
+  /* Semantic (sparingly) */
   --color-success: #7FB89A;
   --color-error: #C97C7C;
 }
 ```
 
-**Rules of use:**
-- Background hierarchy: base → elevated for cards → subtle for section dividers
-- Body text always primary; meta/captions/dates always secondary; small labels tertiary
-- Accent is for links, hover states, key interactive elements only — used sparingly creates impact
-- Never use pure white (#FFFFFF) or pure black (#000000) anywhere on the site
-- Replace every instance of the existing blue with `--color-accent`
+**Step 2 — Hunt down every leftover color and replace it.** Grep the entire codebase for:
 
----
+| Find | Replace with |
+|---|---|
+| `#000` or `#000000` (any case) | `var(--color-bg-base)` |
+| `bg-black` (Tailwind) | `bg-[var(--color-bg-base)]` or a configured token |
+| `text-white` | `text-[var(--color-text-primary)]` |
+| `#fff` or `#ffffff` or `white` | `var(--color-text-primary)` |
+| `#3b82f6` `#0066ff` `#2563eb` `blue-500` `blue-600` `blue-400` (any blues) | `var(--color-accent)` |
+| Any hardcoded hex starting with `#1`, `#2`, `#3` not in this palette | Audit and re-token |
 
-### 3.3 Typography
+Specifically check these files / places where colors typically hide:
+- `globals.css`, `theme.css`, `tailwind.config.js/ts`
+- Every component file's inline styles
+- Any `style={{ ... }}` JSX props
+- SVG `fill=` and `stroke=` attributes on inline SVGs
 
-**Font stack — load via Google Fonts or self-host:**
+**Step 3 — Verify after migration.** Open Chrome DevTools, inspect the body, confirm background-color is `#14100B`. Inspect any heading, confirm color is `#F0E9D8`. Inspect any link, confirm color is `#D49A6A` (or accent-hover on hover).
+
+### 3.2 Background atmosphere
+
+The current site is a flat color block. Add subtle atmosphere — barely perceptible, but transforms the feel.
+
+**Step 1 — Subtle grain texture across the whole `<body>`:**
 
 ```css
-:root {
-  --font-display: 'Fraunces', 'Tiempos Headline', Georgia, serif;
-  --font-body: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
-  --font-mono: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+body {
+  background: var(--color-bg-base);
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' /></filter><rect width='100%25' height='100%25' filter='url(%23n)' /></svg>");
+  mix-blend-mode: overlay;
 }
 ```
 
-**Usage:**
-- **Display font (Fraunces):** All headings (`h1`–`h3`), the hero name, stat numerals, section numbers (01., 02., etc.). Use weight 400–500 for large display, italic optical-size for emphasis.
-- **Body font (IBM Plex Sans):** All paragraph text, navigation, button labels, form inputs. Weight 400 body, 500 for emphasis.
-- **Mono font (JetBrains Mono):** All-caps labels ("EXPERIENCE", "01."), the "Last updated" line on /now, tech tags on project cards, any code/inline `code` elements.
+A 3% opacity noise overlay. Adds warmth and texture without being visible as "grain."
 
-**Tracking and sizing:**
-- Hero name: `clamp(3.5rem, 8vw, 6rem)`, line-height 1.05, letter-spacing -0.02em
-- H2 section headings: `clamp(1.75rem, 4vw, 2.5rem)`, line-height 1.15
-- Body: 1rem (16px), line-height 1.65
-- Mono labels: 0.75rem, letter-spacing 0.12em, uppercase, secondary text color
+**Step 2 — Subtle radial gradient anchored to the top-right:**
 
-**Remove if currently used:** Inter, Roboto, generic system-only font stacks, Space Grotesk.
+In the hero section, add a positioned pseudo-element:
+
+```css
+.hero {
+  position: relative;
+  isolation: isolate;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 60%;
+  height: 80%;
+  background: radial-gradient(
+    circle at center,
+    var(--color-accent-glow) 0%,
+    transparent 60%
+  );
+  z-index: -1;
+  pointer-events: none;
+}
+```
+
+This creates a soft terracotta glow behind the profile photo area. Almost imperceptible, but the page no longer reads as "flat black."
+
+### 3.3 Typography — keep current fonts, lock down hierarchy
+
+The serif display font is working well (looks like Fraunces from screenshots — confirm). Keep current fonts but enforce hierarchy.
+
+**Font roles:**
+- **Display serif (Fraunces or similar):** Hero name, all section headings (h2), big stat numerals, sub-headings within sections
+- **Body sans:** Paragraphs, list items, navigation
+- **Mono:** All-caps labels ("HI, MY NAME IS", "KEY HIGHLIGHTS", "TECHNOLOGIES USED"), dates in card metadata, tech tag text
+
+**Section heading consistency.** Every section currently uses a big-serif heading + generic subtitle. Standardize:
+
+- "About Me" → keep as "About"
+- "My Projects" → keep as "Projects"
+- "My Skills" → keep as "Skills"
+- "Work Experience" → keep as "Experience"
+- "Research Work" → keep as "Research"
+- "Education" → keep as "Education"
+- "Get In Touch With Me" → keep as "Contact"
+
+**Replace the generic subtitles** under each section heading with something that has a point of view:
+
+| Section | Current subtitle | Replace with |
+|---|---|---|
+| About | Passionate about creating innovative solutions through technology and research | *(remove entirely — let the bio paragraphs do the work)* |
+| Projects | A collection of projects showcasing my expertise in full-stack development, AI/ML, and system design | Selected work — production systems and side experiments. |
+| Skills | A comprehensive overview of my technical expertise across various domains | What I've actually shipped with. |
+| Experience | Professional journey across startups and established companies | *(remove entirely)* |
+| Research | *(check current subtitle)* | Peer-reviewed publications and research projects. |
+| Education | My academic journey in computer science and artificial intelligence | *(remove entirely — let the cards speak)* |
+| Contact | *(check current subtitle)* | Reach out. |
+
+### 3.4 Section spacing
+
+Current vertical gap between sections is massive (often a full screen of empty space). Tighten.
+
+- **Section padding:** `padding-block: 8rem;` (128px top and bottom). Currently appears to be ~200px+ in many places.
+- **Between section heading and first content:** `margin-bottom: 4rem;`
+- **Hero to first section:** `margin-top: 0` on first section after hero (currently large gap).
+
+### 3.5 Section label markers (new — adds editorial feel)
+
+Add a small mono-caps section label *above* each section's serif heading, prefixed with a numbered marker in the accent color:
+
+```
+01 — ABOUT
+About
+```
+
+Where `01 — ABOUT` is in `var(--color-accent)`, mono font, ~0.75rem, letter-spacing 0.2em, uppercase. The big serif "About" sits below.
+
+Numbering:
+- 01 — ABOUT
+- 02 — PROJECTS
+- 03 — SKILLS
+- 04 — EXPERIENCE
+- 05 — RESEARCH
+- 06 — EDUCATION
+- 07 — CONTACT
+
+This single touch will do more for "editorial feel" than any other change in this spec.
 
 ---
 
-### 3.4 Motion & Animation
+## PART 4 — Component Redesign
 
-Use the **Motion** library (motion.dev) for React, or pure CSS where possible. Animation philosophy: one well-orchestrated page load with staggered reveals + scroll-triggered section entries. Avoid scattered micro-interactions.
+### 4.1 Hero section
 
-**On initial page load (hero):**
-- Each line of hero text fades in + translates up 8px, staggered 100ms apart:
-  1. "Hi, my name is" (300ms in)
-  2. "Suryaansh Rathinam." (400ms in)
-  3. "I build AI systems." (500ms in)
-  4. Subtitle paragraph (600ms in)
-  5. CTA buttons (800ms in, slight scale from 0.98)
+**Current state:** Big serif name, italic "I build AI systems.", body para, three CTA buttons, four social icons, profile photo right. Works fine structurally, just lifeless visually.
 
-**On scroll (sections):**
-- Each section heading + content fades in + translates up 20px when entering viewport (use intersection observer with `threshold: 0.15`)
-- Use `will-change: transform, opacity` to keep it 60fps
-- Duration: 600ms, easing: `cubic-bezier(0.16, 1, 0.3, 1)` (the "out-expo-like" curve)
+**Changes:**
 
-**Stats section (specific to this redesign):**
-- When stats section enters viewport, each numeral count-ups from 0 to its final value over 1500ms
-  - "2+" counts 0 → 2, suffix "+" appears at end
-  - "3" counts 0 → 3
-  - "NUS" doesn't animate (it's text) — fades in instead
-- Stagger 150ms between the three columns
-- After count-up, the entire row has a subtle bottom-border that draws left-to-right over 800ms
+1. **Tagline italic in accent color.** "I build AI systems." should render in `var(--color-accent)` italic. Currently it's white italic — losing the accent opportunity.
 
-**Hover states:**
-- Links: accent color transition 200ms ease, animated underline reveal from left
-- Project cards: subtle lift on hover (`translateY(-4px)`), border color brightens to `--color-accent-muted`, shadow appears
-- Buttons: background fades to accent-muted, scale 1.02
+2. **Subtle underline on hero name on hover.** Custom animated underline drawing left-to-right under "Suryaansh Rathinam." when hovered. Cursor cursor for fun (default), no link behavior needed.
 
-**Avoid:**
-- Bouncy spring animations everywhere
-- Parallax scrolling (overused, often janky)
-- Mouse-following cursor effects (cliché)
-- Particles in the background
+3. **Period at end of name in accent color.** Currently `Suryaansh Rathinam.` — make the final `.` `var(--color-accent)`. Tiny detail, big personality.
+
+4. **CTA button styling:**
+   - **Primary** (Download Resume): solid `var(--color-accent)` background, dark text, on hover slight scale (1.02) + accent-hover background
+   - **Secondary** (Get In Touch, More About Me): transparent background, `var(--color-border-medium)` 1px border, on hover border becomes `var(--color-accent)` and text gains accent color
+
+5. **Social icons** (GitHub, LinkedIn, Email, code icon for LeetCode): currently bare icons. Add:
+   - Default: `var(--color-text-secondary)`
+   - Hover: `var(--color-accent)` + slight vertical lift (translateY(-2px))
+   - Smooth 200ms transition
+
+6. **Profile photo treatment.** Currently a circular crop with no treatment. Add:
+   - 1px ring in `var(--color-border-medium)`
+   - On hover (or always, subtle): a soft outer glow using `var(--color-accent-glow)` — `box-shadow: 0 0 80px var(--color-accent-glow)`
+   - Optional: very subtle floating animation (transform translateY oscillating ±4px over 6s loop). Use `prefers-reduced-motion` media query to disable.
+
+7. **Background.** Apply the radial gradient atmosphere from 3.2 here.
+
+### 4.2 About section
+
+**Already covered:** paragraph rewrites (Part 1.1, 1.2), feature cards removal (Part 1.9), stats fixes (Part 1.4).
+
+**Additional visual changes:**
+
+1. **Stats redesign.** Currently three large serif numerals with vertical bar dividers. Keep the serif numerals (they work) but:
+   - Numeral color: `var(--color-accent)` (not white)
+   - Label color: `var(--color-text-tertiary)` mono caps, letter-spacing 0.2em
+   - Dividers: thinner, `var(--color-border-subtle)`, slight opacity
+   - Stagger entry animation: each stat fades + translates up 8px with 150ms delay between them
+
+2. **Photo of you at the water** — keep it. Add the same 1px ring + glow treatment as hero photo, slightly subtler.
+
+### 4.3 Projects section
+
+**Current state:** Three card grid, dates with calendar icon, title, truncated description, oval tech chips, Code button. Cards have no visible borders — they float.
+
+**Changes:**
+
+1. **Add card borders.** Each project card gets a 1px border in `var(--color-border-subtle)`, rounded corners (8px), padding 1.5rem.
+
+2. **Hover state.** On hover:
+   - Border color transitions to `var(--color-accent-muted)` (200ms ease)
+   - Subtle terracotta glow: `box-shadow: 0 8px 32px var(--color-accent-glow)`
+   - Card lifts: `transform: translateY(-4px)`
+   - Smooth transition: `transition: all 300ms cubic-bezier(0.16, 1, 0.3, 1)`
+
+3. **Tech chip redesign.** Currently oval chips with thick uniform borders, all-caps mono text. Change to:
+   - Border: `var(--color-border-subtle)` 1px
+   - Background: transparent
+   - Text: `var(--color-text-secondary)` mono, 0.7rem, NOT all-caps (keep "FastAPI" as "FastAPI", "OpenAI" as "OpenAI" — proper case)
+   - Padding: `0.25rem 0.65rem`
+   - Border-radius: `9999px` (pill)
+   - **First chip in each project list** gets accent treatment: text color `var(--color-accent)`, border `var(--color-accent-muted)`. This is the "headline" technology for that project.
+
+4. **Code/Demo buttons.** Same secondary button style as hero CTA (transparent, border, hover accent). NOT solid full-width as they currently appear.
+
+5. **Date display.** Currently `April 2025` etc. Keep format but reduce visual weight: `var(--color-text-tertiary)`, mono, 0.75rem, with the calendar icon at 14px.
+
+6. **Title casing fix.** Already in Part 1.6 — "GMAIL Rag System" → "Gmail RAG System".
+
+7. **Show All Projects.** Keep the collapse pattern but:
+   - Button styling: ghost button with chevron, `var(--color-text-secondary)` text, hover to accent
+   - When expanded: same hover treatment per card
+
+### 4.4 Skills section
+
+**Current state:** 2-column accordion. AI/ML expanded showing 15 chips. Programming Languages, Frontend, Backend, Databases & Cloud, Testing & Automation all collapsed and empty. Creates ugly asymmetric layout where left side has 15 chips and right side is empty.
+
+**Changes — replace the accordion with a flat layout.**
+
+1. **Remove the accordion entirely.** No collapse/expand. Every category is visible.
+
+2. **Layout:** Single column (full width). Each category as a horizontal section:
+   - Category name in serif (h3 size, e.g., 1.5rem), `var(--color-text-primary)`
+   - Chips below in a wrapping flex/grid
+
+3. **Order categories by relevance to current positioning:**
+   1. Artificial Intelligence & Machine Learning
+   2. Backend Development
+   3. Programming Languages
+   4. Databases & Cloud
+   5. Frontend Development
+   6. Testing & Automation
+
+4. **Chip styling:** Same as project tech chips (see 4.3 point 3) — refined, proper-case, accent for the first chip in each category (signaling the headline skill).
+
+5. **Stats row below skills.** Currently shows `50+ Technologies · 10+ Projects · 3 Research Papers · 5+ Work Experiences`. 
+   - Remove `50+ Technologies` (vanity number, redundant with the skills list right above)
+   - Keep: `10+ Projects · 3 Research Papers · 5+ Work Experiences`
+   - Style same as the hero stats (serif numerals in accent, mono caps labels in tertiary)
+
+### 4.5 Experience section
+
+**Current state:** Vertical list of cards. Logo (or placeholder) + company + title on left, date on right, description below, "KEY HIGHLIGHTS" bullets, "TECHNOLOGIES USED" chips. ST Engineering, ThoutAI, Ridecell all have placeholder gray X-icon logos.
+
+**Changes:**
+
+1. **Replace placeholder logos.** From the `/assets` folder. Expected paths (Claude Code: confirm and use whatever's actually there):
+   - `/public/assets/logos/st-engineering.svg` or `.png`
+   - `/public/assets/logos/thoutai.svg` or `.png`
+   - `/public/assets/logos/ridecell.svg` or `.png`
+   
+   If logo aspect ratios differ from the square crop in the layout, normalize: render each logo inside a `48x48px` container with `object-fit: contain` and a subtle `var(--color-bg-elevated)` background to handle transparency uniformly.
+
+2. **Card structure tightening.** Current cards are very tall with lots of "KEY HIGHLIGHTS" / "TECHNOLOGIES USED" mono labels. Reduce to:
+   - Header row: Logo (48x48) · Company name (serif, h3) + Title (body, secondary color) — on left. Date pill on right.
+   - Description paragraph (1-2 lines).
+   - Highlights as plain bullet list (no "KEY HIGHLIGHTS" label, no arrow icon — just standard bullets). 3-5 bullets max.
+   - Tech chips inline at the bottom (no "TECHNOLOGIES USED" label). Same chip styling as projects.
+
+3. **Remove empty "KEY HIGHLIGHTS" sections.** ST Engineering card currently shows the label with no content under it. If a card has no highlights yet, omit the section entirely.
+
+4. **Card border and hover** same as projects (Part 4.3 point 2): subtle border, hover lift + glow.
+
+5. **Timeline rail (optional but recommended).** Add a thin vertical line on the left of the experience list, with small accent-colored dots at each card's vertical center. Creates visual narrative of progression:
+   ```
+   ┃ ● ST Engineering
+   ┃ ● ThoutAI
+   ┃ ● Datalens AI
+   ┃ ● ...
+   ```
+   Line: 1px, `var(--color-border-medium)`. Dots: 8px circle, `var(--color-accent)`.
+
+6. **Date display.** Use full format: `May 2026 – Present`, `Aug 2025 – Apr 2026`, etc. Drop the `'26` shortened format. Currently appears as `May '26 - Present` — change to `May 2026 – Present`.
+
+### 4.6 Education section
+
+**Current state:** Two cards (NUS, Manipal). Logo + university name + degree + date + GPA + description + Cloud Computing/Software Engineering pills + "Relevant Coursework" collapsible.
+
+**Changes:**
+
+1. **GPA pill is redundant.** Currently shows `GPA: 4.45 / 5` inline AND a pill below saying `4.45 / 5 GPA`. Remove the pill, keep the inline display.
+
+2. **Date format.** Already covered in 1.7 — change to `Aug 2024 – Dec 2025` and `Sep 2020 – Jul 2024`.
+
+3. **Card border + hover** same pattern as projects.
+
+4. **"Relevant Coursework" collapsible** is fine — it's a long list and benefits from collapse. Improve the chevron treatment: subtle rotate animation on expand (180deg, 200ms).
+
+### 4.7 Research section
+
+**Current state:** 4 cards in 2x2 grid. Each shows label (Journal Paper / Conference Paper / IEEE Paper / Research Internship), title, authors, conference, publication, description, action buttons.
+
+**Changes:**
+
+1. **Featured the IEEE Access paper.** It's your highest-prestige publication. Pull it out of the grid and feature it above as a larger single card spanning full width:
+   - Larger title typography
+   - Abstract excerpt (1-2 sentences) prominent
+   - Authors line
+   - Both "PDF" and "View" buttons as primary + secondary CTAs
+   - A small "Featured" badge in accent color in the top-right corner
+   
+   Then the remaining three cards (Journal Paper, Conference Paper, Research Internship) sit below in a 3-column or 2-column grid.
+
+2. **Distinguish "Research Internship" visually.** It's not a publication. Change its label color to `var(--color-text-tertiary)` instead of accent. Or add a separator: feature the 3 publications together, then a smaller "Research Experience" sub-section below for the internship.
+
+3. **Action button consistency.** Currently uses inconsistent button counts (Certificate / PDF + View / PDF + View + Conference). Pick one icon set and stick to it:
+   - PDF (download icon)
+   - View (external link icon)
+   - Conference / Certificate (link icon)
+
+### 4.8 Contact section
+
+Already covered in Part 1.5 for copy. Visual changes:
+
+1. **Reduce sections.** Currently has "Let's Connect!" / "Schedule a Meeting" / GitHub LinkedIn / Email LeetCode / "Ready to Connect" / "Based in Singapore" — too much. Simplify to:
+   - Single column, centered
+   - Big serif heading "Contact" (consistent with other section headings)
+   - Mono caps label above: "07 — CONTACT"
+   - One body paragraph (the rewrite from 1.5)
+   - One primary CTA: "Schedule a meeting" (calendar link)
+   - Below it: row of 4 icon links (GitHub, LinkedIn, Email, LeetCode)
+   - Footer line: "Based in Singapore · Usually responds within 24 hours"
+
+2. **Profile photo (the second one, in suit).** Either:
+   - Remove it (one profile photo on the page is enough, it's already in the hero)
+   - Or keep, but smaller, as a circular avatar above the heading
+
+I'd lean **remove**. The hero already establishes who you are visually.
+
+3. **"Schedule a meeting" button.** Solid `var(--color-accent)` background, dark text, calendar icon. Same as hero primary CTA.
+
+### 4.9 Footer
+
+Current state:
+```
+© 2026 Suryaansh Rathinam        /NOW   GITHUB   LINKEDIN
+```
+
+Changes:
+
+1. **Remove `/NOW` link** (per Part 2.2).
+
+2. **Dynamic year.** Replace `2026` with `{new Date().getFullYear()}` so it auto-updates.
+
+3. **Final footer:**
+```
+© {currentYear} Suryaansh Rathinam        GITHUB   LINKEDIN
+```
+
+4. **Subtle accent border above footer:** `border-top: 1px solid var(--color-border-subtle)`, padding-top 2rem.
 
 ---
 
-## Part 4 — SEO & Meta
+## PART 5 — Motion System
 
-### 4.1 Meta Tags Update
+Current site has minimal motion. Add these as a coherent system, not scattered.
 
-**Current `<head>` meta tags need these updates:**
+### 5.1 On page load (hero only)
+
+Each line of hero content fades in + translates up 8px, staggered:
+- "HI, MY NAME IS" — 0ms
+- "Suryaansh Rathinam." — 100ms
+- "I build AI systems." — 200ms
+- Body paragraph — 300ms
+- CTA buttons — 400ms
+- Social icons — 500ms
+- Profile photo — 0ms but with longer duration (800ms), slight scale from 0.96 to 1.0
+
+Duration each: 600ms · Easing: `cubic-bezier(0.16, 1, 0.3, 1)` (smooth out-expo)
+
+### 5.2 On scroll (every other section)
+
+Use Intersection Observer. When a section enters the viewport (threshold 0.15):
+
+- Section label (mono caps "01 — ABOUT") fades in
+- Big serif heading fades + translates up 16px, 150ms after label
+- Section content fades + translates up 24px, 300ms after heading
+- Within content, cards/list items stagger 80-100ms apart
+
+Duration: 700ms · Easing: same as 5.1
+
+**Important:** Once a section has animated in, don't re-animate on scroll up. Use a `data-animated="true"` attribute after first trigger.
+
+### 5.3 Stats count-up
+
+Already specced. When stats section enters viewport, count from 0 to target over 1500ms with ease-out cubic. Stagger 150ms between the three stats.
+
+### 5.4 Hover states (universal)
+
+- **Links:** Color transition 200ms ease to `var(--color-accent-hover)` + animated underline draw from left (using `background-image: linear-gradient` trick or `::after` pseudo-element with `transform: scaleX`)
+- **Cards:** Border + glow + lift, 300ms ease (see 4.3)
+- **Buttons:** Background/border/text color transition 200ms ease
+- **Icons:** Color + slight translateY(-2px), 200ms ease
+
+### 5.5 Reduced motion
+
+Wrap all animation logic in:
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+```
+
+---
+
+## PART 6 — Assets / Logos
+
+Logo files should live in `/public/assets/logos/`.
+
+Expected files (Claude Code: check actual filenames in `/assets` folder — adjust paths to match):
+
+- `/public/assets/logos/st-engineering.{svg|png}`
+- `/public/assets/logos/thoutai.{svg|png}`
+- `/public/assets/logos/ridecell.{svg|png}`
+
+Update the Experience component to use these instead of `placeholder.svg`. If logos are PNGs with non-square aspect ratios, render inside a 48x48 container with `object-fit: contain`.
+
+---
+
+## PART 7 — SEO / Meta (carry-forward from previous spec)
+
+These were specified before — verify they actually landed:
+
+### 7.1 Meta tags (use existing profile photo)
 
 ```html
-<!-- Description -->
-<meta name="description" content="Suryaansh Rathinam — Senior AI Engineer at ST Engineering R&D. Building production AI systems at the intersection of research and engineering. Masters in AI from NUS." />
-
-<!-- Open Graph -->
-<meta property="og:title" content="Suryaansh Rathinam — AI Engineer" />
-<meta property="og:description" content="Senior AI Engineer at ST Engineering R&D. Building production AI systems at the intersection of research and engineering." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://www.suryaanshrathinam.com/" />
 <meta property="og:image" content="https://www.suryaanshrathinam.com/images/profile.jpg" />
-
-<!-- Twitter -->
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Suryaansh Rathinam — AI Engineer" />
-<meta name="twitter:description" content="Senior AI Engineer at ST Engineering R&D. Building production AI systems at the intersection of research and engineering." />
 <meta name="twitter:image" content="https://www.suryaanshrathinam.com/images/profile.jpg" />
 ```
 
-**Note on social preview image:** Using the existing profile photo at `/images/profile.jpg` as the OG/Twitter share image. The Twitter card is set to `summary` (small square thumbnail) since the profile photo is square — `summary_large_image` would crop awkwardly. If the profile photo path differs in the codebase, update both `og:image` and `twitter:image` to match. Use an absolute URL (with `https://www.suryaanshrathinam.com` prefix) so Open Graph crawlers can resolve it.
+### 7.2 JSON-LD structured data
 
----
+Add Person + ScholarlyArticle schema. Copy from the previous spec's section 4.2 (assume Claude Code has it). If not present, follow that structure.
 
-### 4.2 Structured Data (JSON-LD)
+### 7.3 Favicon
 
-Add this `<script type="application/ld+json">` block to the homepage `<head>`:
-
-```json
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Suryaansh Rathinam",
-  "url": "https://www.suryaanshrathinam.com",
-  "image": "https://www.suryaanshrathinam.com/images/profile.jpg",
-  "jobTitle": "Senior AI Engineer",
-  "worksFor": {
-    "@type": "Organization",
-    "name": "ST Engineering",
-    "url": "https://www.stengg.com/"
-  },
-  "alumniOf": [
-    {
-      "@type": "CollegeOrUniversity",
-      "name": "National University of Singapore",
-      "url": "https://www.nus.edu.sg/"
-    },
-    {
-      "@type": "CollegeOrUniversity",
-      "name": "Manipal Institute of Technology",
-      "url": "https://manipal.edu/mit.html"
-    }
-  ],
-  "sameAs": [
-    "https://github.com/suryaansh2002",
-    "https://www.linkedin.com/in/suryaansh-rathinam/",
-    "https://leetcode.com/suryaansh28"
-  ],
-  "knowsAbout": [
-    "Artificial Intelligence",
-    "Machine Learning",
-    "Large Language Models",
-    "Retrieval-Augmented Generation",
-    "AI Agents",
-    "Full-Stack Engineering"
-  ]
-}
-```
-
-**Additionally — add `ScholarlyArticle` schema for each publication.** Each publication card in the Publications section should include structured data like:
-
-```json
-{
-  "@context": "https://schema.org",
-  "@type": "ScholarlyArticle",
-  "headline": "Exploring IoT-Blockchain Integration in Agriculture: An Experimental Study",
-  "author": {
-    "@type": "Person",
-    "name": "Suryaansh Rathinam"
-  },
-  "datePublished": "2024",
-  "publisher": "IEEE Access",
-  "url": "https://ieeexplore.ieee.org/document/10510501"
-}
-```
-
-Repeat for the IOP and Springer publications.
-
----
-
-### 4.3 Favicon / Title Bar Icon
-
-Replace the existing favicon with an "SR" monogram that matches the new visual system. The current favicon (likely default Next.js or unset) does no brand work.
-
-**Design intent:** Bold "SR" in the site's display serif, warm cream on deep ink, rounded square. The period from the nav wordmark ("SR.") is intentionally omitted — at 16×16 it would be illegible noise.
-
-**SVG source — save as `/public/favicon.svg`:**
+The SR monogram favicon from previous spec — verify it's in place. If still default, generate from this SVG:
 
 ```svg
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
-  <rect width="256" height="256" rx="48" fill="#0F1419"/>
-  <text 
-    x="128" 
-    y="172" 
-    font-family="Fraunces, 'Tiempos Headline', Georgia, serif"
-    font-size="148" 
-    font-weight="500"
-    fill="#ECE6D8"
-    text-anchor="middle"
-    letter-spacing="-4">SR</text>
+  <rect width="256" height="256" rx="48" fill="#14100B"/>
+  <text x="128" y="172" font-family="Fraunces, 'Tiempos Headline', Georgia, serif" font-size="148" font-weight="500" fill="#F0E9D8" text-anchor="middle" letter-spacing="-4">SR</text>
 </svg>
 ```
 
-**Files to generate and place in `/public`:**
-
-| File | Size | Purpose |
-|------|------|---------|
-| `favicon.ico` | multi-res (16, 32, 48) | Legacy browser tab |
-| `favicon-16x16.png` | 16×16 | Modern fallback |
-| `favicon-32x32.png` | 32×32 | Modern fallback |
-| `apple-touch-icon.png` | 180×180 | iOS home screen |
-| `android-chrome-192x192.png` | 192×192 | Android home screen |
-| `android-chrome-512x512.png` | 512×512 | PWA / large displays |
-
-**How to generate** (any of these works):
-
-- **Easiest:** paste the SVG into [realfavicongenerator.net](https://realfavicongenerator.net/), download the bundle, drop into `/public`
-- **Programmatic:** use `sharp` to resize the SVG to each PNG size, then `to-ico` to bundle the .ico
-- **CLI:** `magick favicon.svg -resize 32x32 favicon-32x32.png` (ImageMagick) repeated per size
-
-**Next.js App Router convention (if the codebase uses it):**
-
-Skip the manual meta tags below — instead place files directly in the `app/` directory and Next.js will generate the correct `<link>` tags automatically:
-
-- `app/icon.svg`
-- `app/apple-icon.png` (180×180)
-- `app/favicon.ico`
-
-**Manual HTML meta tags (if not using App Router conventions):**
-
-Add to `<head>`:
-
-```html
-<link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-<link rel="manifest" href="/site.webmanifest" />
-```
-
-**Optional — `site.webmanifest` for PWA support:**
-
-Save as `/public/site.webmanifest`:
-
-```json
-{
-  "name": "Suryaansh Rathinam",
-  "short_name": "SR",
-  "icons": [
-    {
-      "src": "/android-chrome-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "/android-chrome-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ],
-  "theme_color": "#0F1419",
-  "background_color": "#0F1419",
-  "display": "standalone"
-}
-```
-
-**Font dependency note:** The SVG references Fraunces with a serif fallback chain. When the SVG is rasterized to PNG, the generator will substitute Georgia if Fraunces isn't available on the build machine — which is fine, the visual difference is minimal at small sizes. For a truly font-independent favicon, convert the "SR" text to paths in a vector editor before rasterizing.
+(Background updated to match the new `--color-bg-base`.)
 
 ---
 
-## Part 5 — Code-Level Changes
+## PART 8 — Implementation Order
 
-### 5.1 Dynamic Footer Year
+Suggested sequence:
 
-**Find footer copyright line:**
-```
-© 2026 Suryaansh Rathinam
-```
-
-**Replace with React/JSX:**
-```jsx
-© {new Date().getFullYear()} Suryaansh Rathinam
-```
-
-If footer is in a server component or static HTML, use the framework's date utility or build-time injection — but client-side `new Date().getFullYear()` is simplest and accurate.
-
----
-
-### 5.2 Stat Counter Animation
-
-Implement count-up for the stats section. Suggested approach using `useEffect` + `requestAnimationFrame`:
-
-```jsx
-function CountUp({ end, duration = 1500, suffix = '' }) {
-  const [count, setCount] = useState(0);
-  const ref = useRef(null);
-  const hasAnimated = useRef(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasAnimated.current) {
-          hasAnimated.current = true;
-          const start = performance.now();
-          const animate = (now) => {
-            const progress = Math.min((now - start) / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
-            setCount(Math.floor(end * eased));
-            if (progress < 1) requestAnimationFrame(animate);
-          };
-          requestAnimationFrame(animate);
-        }
-      },
-      { threshold: 0.5 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [end, duration]);
-
-  return <span ref={ref}>{count}{suffix}</span>;
-}
-```
-
-Use as: `<CountUp end={2} suffix="+" />` and `<CountUp end={3} />`.
+1. **Critical content fixes first** (Part 1) — fast, low-risk, immediately useful even before visual work
+2. **Delete `/now` page** (Part 2) — cleanup before refactoring
+3. **Color tokens** (Part 3.1) — define the variables in globals.css
+4. **Grep + replace all colors** (Part 3.1 Step 2) — most important step. Go file by file. Verify after.
+5. **Typography hierarchy + section labels** (Part 3.3 + 3.5) — apply the "01 — ABOUT" markers everywhere
+6. **Background atmosphere** (Part 3.2) — grain + radial gradient
+7. **Component pass — Hero, About, Projects, Skills, Experience, Education, Research, Contact, Footer** (Part 4) — work top-down through the page
+8. **Logos** (Part 6) — swap placeholder.svg for actual files
+9. **Motion** (Part 5) — add as final layer once everything is in place
+10. **SEO carry-forward** (Part 7) — verify
 
 ---
 
-### 5.3 Section Reveal Animation
+## PART 9 — What NOT to change
 
-For scroll-triggered section reveals, either use Motion's `whileInView` prop (cleanest), or a generic `<Reveal>` wrapper component using IntersectionObserver. Apply to: About, Experience, Education, Skills, Projects, Publications, Contact section headings + content.
-
----
-
-## Part 6 — Implementation Order
-
-Suggested order of operations:
-
-1. **Content updates first** (Part 1) — fast, low-risk, immediately useful even before visual changes ship
-2. **Theme tokens** (Part 3.2) — define color variables before touching components
-3. **Typography** (Part 3.3) — load fonts, set up font variables, replace existing font references
-4. **Component-by-component visual pass** — update each component to use new tokens, remove all hardcoded blues, replace fonts
-5. **Animations** (Part 3.4 + Part 5.2 + Part 5.3) — add motion in one focused pass
-6. **`/now` page** (Part 2) — new route, link from footer
-7. **SEO & meta** (Part 4.1, 4.2) — meta tags and structured data
-8. **Favicon** (Part 4.3) — generate icon set from SR monogram SVG, wire up
-9. **Footer year** (Part 5.1) — quick win
+- Section information architecture (sections stay in current order, except merging if mentioned above)
+- Profile photos (the hero photo + the photo at the water)
+- Education content (just date format and visual treatment)
+- Project list itself (just titles, URLs, and visual treatment — not which projects)
+- AIDF NUS experience entry stays
+- Research content stays as-is, just visual treatment
 
 ---
 
-## Part 7 — Things NOT to Change
+## Verification checklist (run after implementation)
 
-To avoid scope creep:
-
-- Do not add IIT Kharagpur research entries (intentionally kept off the portfolio)
-- Do not remove the AIDF NUS experience entry (kept on portfolio even though not on LinkedIn)
-- Do not change publication content
-- Do not add new projects unless explicitly asked
-- Do not change the overall information architecture (sections in the same order)
-- Do not change the profile photos or banner images
-- Do not add a blog/writing section in this pass — that's a separate decision
+- [ ] Hero stats show `3+` Years Experience, `3` Publications, `NUS`
+- [ ] About first paragraph says "I completed my Masters... in December 2025" with "Specialisation"
+- [ ] About second paragraph mentions Manipal + production AI at startups (not the generic copy)
+- [ ] Contact section says "Not actively looking" — no mention of "available for remote work worldwide"
+- [ ] No placeholder logos for ST Engineering, ThoutAI, or Ridecell
+- [ ] Every section has a `01 — ABOUT` style mono-caps label above the serif heading
+- [ ] Background is warm-tinted dark (#14100B), not pure black
+- [ ] Hovering any card or link triggers a visible accent transition
+- [ ] "Gmail RAG System" is correctly capitalized
+- [ ] Skills section is no longer an accordion — all categories visible
+- [ ] Featured cards row at top of About is removed
+- [ ] /now route returns 404 (page deleted)
+- [ ] Footer has no `/NOW` link
+- [ ] Dates everywhere use full month + full year format
 
 ---
 
-## Open Items / Pending User Input
-
-- [ ] Optional: update profile photo for visual consistency with LinkedIn (not in this spec)
-
----
-
-*End of specification.*
+*End of specification v2.*

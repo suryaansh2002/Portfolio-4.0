@@ -2,12 +2,10 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { useTheme } from "next-themes"
-import { Menu, X, Sun, Moon } from "lucide-react"
+import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const navigation = [
-  { name: "Home", href: "#hero" },
   { name: "About", href: "#about" },
   { name: "Projects", href: "#projects" },
   { name: "Skills", href: "#skills" },
@@ -20,7 +18,6 @@ const navigation = [
 export function Header() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const { theme, setTheme } = useTheme()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,61 +38,49 @@ export function Header() {
   return (
     <header
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? "glass-morphism shadow-lg" : "bg-transparent"
+        scrolled
+          ? "bg-[hsl(var(--color-bg-base)/0.85)] backdrop-blur-md border-b border-[hsl(var(--color-border-subtle))]"
+          : "bg-transparent"
       }`}
     >
-      <nav className="container-custom">
+      <nav className="container-custom px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-ink-elevated border border-border rounded-lg flex items-center justify-center">
-              <span className="text-foreground font-display text-lg">SR</span>
-            </div>
-            <span className="font-display text-xl text-foreground">Suryaansh<span className="text-accent">.</span></span>
+          <Link href="/" className="flex items-center gap-2">
+            <span className="font-display text-lg text-[hsl(var(--color-text-primary))]">
+              Suryaansh<span className="text-accent">.</span>
+            </span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center gap-7">
             {navigation.map((item) => (
               <button
                 key={item.name}
                 onClick={() => scrollToSection(item.href)}
-                className="text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium"
+                className="text-sm text-[hsl(var(--color-text-secondary))] hover:text-accent transition-colors duration-200"
               >
                 {item.name}
               </button>
             ))}
           </div>
 
-          {/* Theme Toggle & Mobile Menu */}
-          <div className="flex items-center space-x-4">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="rounded-full"
-            >
-              <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-              <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-              <span className="sr-only">Toggle theme</span>
-            </Button>
-
-            {/* Mobile menu button */}
-            <Button variant="ghost" size="icon" className="md:hidden rounded-full" onClick={() => setIsOpen(!isOpen)}>
-              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </Button>
-          </div>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="md:hidden text-[hsl(var(--color-text-primary))] hover:text-accent hover:bg-transparent"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </Button>
         </div>
 
-        {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden absolute top-16 left-0 right-0 glass-morphism border-t border-white/10">
-            <div className="px-4 py-6 space-y-4">
+          <div className="md:hidden absolute top-16 left-0 right-0 bg-[hsl(var(--color-bg-base)/0.95)] backdrop-blur-md border-t border-[hsl(var(--color-border-subtle))]">
+            <div className="px-4 py-6 space-y-3">
               {navigation.map((item) => (
                 <button
                   key={item.name}
                   onClick={() => scrollToSection(item.href)}
-                  className="block w-full text-left text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium py-2"
+                  className="block w-full text-left text-sm text-[hsl(var(--color-text-secondary))] hover:text-accent transition-colors duration-200 py-2"
                 >
                   {item.name}
                 </button>

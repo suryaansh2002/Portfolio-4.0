@@ -1,18 +1,17 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { ChevronDown, ChevronRight } from "lucide-react"
+import { useEffect, useRef } from "react"
+import { SectionLabel } from "@/components/ui/section-label"
 
 const skillCategories = [
   {
     name: "Artificial Intelligence & Machine Learning",
     skills: [
-      "Large Language Models (LLMs)",
+      "Large Language Models",
       "OpenAI API",
       "Mistral",
       "Vector Databases",
-      "RAG (Retrieval Augmented Generation)",
+      "RAG",
       "Knowledge Graphs",
       "Speaker Diarization",
       "Computer Vision",
@@ -24,12 +23,18 @@ const skillCategories = [
       "Prompt Engineering",
       "Transformers",
     ],
-    color: "from-violet-500 to-purple-600",
+  },
+  {
+    name: "Backend Development",
+    skills: ["Node.js", "Express.js", "Django", "FastAPI", "NestJS", "RESTful APIs", "GraphQL"],
   },
   {
     name: "Programming Languages",
     skills: ["Python", "JavaScript", "TypeScript", "C++", "C", "Java", "Swift", "PHP"],
-    color: "from-blue-500 to-cyan-500",
+  },
+  {
+    name: "Databases & Cloud",
+    skills: ["MongoDB", "PostgreSQL", "MySQL", "TypeORM", "AWS", "Firebase", "Docker", "Git"],
   },
   {
     name: "Frontend Development",
@@ -46,27 +51,14 @@ const skillCategories = [
       "React Native",
       "Flutter",
     ],
-    color: "from-purple-500 to-pink-500",
-  },
-  {
-    name: "Backend Development",
-    skills: ["Node.js", "Express.js", "Django", "FastAPI", "NestJS", "RESTful APIs", "GraphQL"],
-    color: "from-green-500 to-emerald-500",
-  },
-  {
-    name: "Databases & Cloud",
-    skills: ["MongoDB", "PostgreSQL", "MySQL", "TypeORM", "AWS", "Firebase", "Docker", "Git"],
-    color: "from-orange-500 to-red-500",
   },
   {
     name: "Testing & Automation",
     skills: ["Selenium", "Appium", "Pytest", "Jest", "Cypress", "Test Automation"],
-    color: "from-teal-500 to-blue-500",
   },
 ]
 
 export function SkillsSection() {
-  const [expandedCategories, setExpandedCategories] = useState<Set<number>>(new Set([0]))
   const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
@@ -78,7 +70,7 @@ export function SkillsSection() {
           }
         })
       },
-      { threshold: 0.1 },
+      { threshold: 0.15 },
     )
 
     const elements = sectionRef.current?.querySelectorAll(".reveal")
@@ -87,76 +79,57 @@ export function SkillsSection() {
     return () => observer.disconnect()
   }, [])
 
-  const toggleCategory = (index: number) => {
-    const newExpanded = new Set(expandedCategories)
-    if (newExpanded.has(index)) {
-      newExpanded.delete(index)
-    } else {
-      newExpanded.add(index)
-    }
-    setExpandedCategories(newExpanded)
-  }
-
   return (
-    <section id="skills" ref={sectionRef} className="section-padding bg-muted/30">
+    <section id="skills" ref={sectionRef} className="section-padding bg-[hsl(var(--color-bg-subtle))]">
       <div className="container-custom">
-        <div className="text-center mb-16 reveal">
-          <h2 className="text-section-title gradient-text">My Skills</h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            A comprehensive overview of my technical expertise across various domains
+        <div className="mb-16 reveal text-center">
+          <SectionLabel number="03" label="Skills" align="center" className="mb-4" />
+          <h2 className="text-section-title">Skills</h2>
+          <p className="text-base text-[hsl(var(--color-text-secondary))] max-w-2xl mx-auto mt-3">
+            What I&rsquo;ve actually shipped with.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8">
+        <div className="max-w-4xl mx-auto space-y-12">
           {skillCategories.map((category, index) => (
-            <Card key={index} className="skill-card reveal group">
-              <CardHeader className="cursor-pointer" onClick={() => toggleCategory(index)}>
-                <CardTitle className="flex items-center justify-between">
-                  <span className="text-foreground font-display">{category.name}</span>
-                  {expandedCategories.has(index) ? (
-                    <ChevronDown className="w-5 h-5 transition-transform" />
-                  ) : (
-                    <ChevronRight className="w-5 h-5 transition-transform" />
-                  )}
-                </CardTitle>
-              </CardHeader>
-
-              {expandedCategories.has(index) && (
-                <CardContent>
-                  <div className="flex flex-wrap gap-2">
-                    {category.skills.map((skill, skillIndex) => (
-                      <span
-                        key={skillIndex}
-                        className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider bg-accent/10 text-accent border border-accent/20 hover:border-accent/40 hover:bg-accent/20 transition-all duration-200 cursor-default"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </CardContent>
-              )}
-            </Card>
+            <div key={index} className="reveal">
+              <h3 className="text-xl sm:text-2xl font-display text-[hsl(var(--color-text-primary))] mb-5">
+                {category.name}
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {category.skills.map((skill, skillIndex) => (
+                  <span
+                    key={skillIndex}
+                    className={`tech-chip ${skillIndex === 0 ? "tech-chip--accent" : ""}`}
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
           ))}
         </div>
 
-        {/* Skills Summary */}
-        <div className="mt-16 text-center reveal">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div className="space-y-2">
-              <div className="text-3xl font-bold gradient-text">50+</div>
-              <div className="text-muted-foreground">Technologies</div>
+        {/* Reduced stats row */}
+        <div className="mt-20 reveal max-w-3xl mx-auto">
+          <div className="grid grid-cols-3 gap-0 stats-row">
+            <div className="text-center px-4 md:border-r md:border-[hsl(var(--color-border-subtle))]">
+              <div className="font-display text-4xl sm:text-5xl text-accent mb-2 leading-none">10+</div>
+              <div className="font-mono uppercase tracking-[0.2em] text-xs text-[hsl(var(--color-text-tertiary))]">
+                Projects
+              </div>
             </div>
-            <div className="space-y-2">
-              <div className="text-3xl font-bold gradient-text">10+</div>
-              <div className="text-muted-foreground">Projects</div>
+            <div className="text-center px-4 md:border-r md:border-[hsl(var(--color-border-subtle))]">
+              <div className="font-display text-4xl sm:text-5xl text-accent mb-2 leading-none">3</div>
+              <div className="font-mono uppercase tracking-[0.2em] text-xs text-[hsl(var(--color-text-tertiary))]">
+                Research Papers
+              </div>
             </div>
-            <div className="space-y-2">
-              <div className="text-3xl font-bold gradient-text">3</div>
-              <div className="text-muted-foreground">Research Papers</div>
-            </div>
-            <div className="space-y-2">
-              <div className="text-3xl font-bold gradient-text">5+</div>
-              <div className="text-muted-foreground">Work Experiences</div>
+            <div className="text-center px-4">
+              <div className="font-display text-4xl sm:text-5xl text-accent mb-2 leading-none">5+</div>
+              <div className="font-mono uppercase tracking-[0.2em] text-xs text-[hsl(var(--color-text-tertiary))]">
+                Work Experiences
+              </div>
             </div>
           </div>
         </div>
