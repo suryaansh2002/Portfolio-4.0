@@ -10,6 +10,8 @@ import pefo from "@/assets/pefo.png"
 import kaiziq from "@/assets/kaiziq.png"
 import aidf from "@/assets/aidf.png"
 import datalensai from "@/assets/datalensai.png"
+import stengg from "@/assets/stengg.png"
+import thout from "@/assets/thout.png"
 
 interface WorkEntry {
   company: string
@@ -26,7 +28,7 @@ const workExperience: WorkEntry[] = [
   {
     company: "ST Engineering",
     duration: "May 2026 – Present",
-    logo: "/assets/logos/st-engineering.svg",
+    logo: stengg,
     website: "https://www.stengg.com/",
     role: "Senior AI Engineer",
     description: "Senior AI Engineer in the Research & Development division.",
@@ -36,7 +38,7 @@ const workExperience: WorkEntry[] = [
   {
     company: "ThoutAI",
     duration: "Aug 2025 – Apr 2026",
-    logo: "/assets/logos/thoutai.svg",
+    logo: thout,
     website: "https://thout.ai/",
     role: "Founding Engineer (Backend & AI Lead)",
     description:
@@ -225,13 +227,13 @@ export function WorkExperienceSection() {
 
                 <div className="project-card card-hover">
                   <header className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-lg overflow-hidden bg-[hsl(var(--color-bg-elevated))] border border-[hsl(var(--color-border-subtle))] flex items-center justify-center shrink-0">
+                    <div className="w-14 h-14 rounded-full overflow-hidden bg-[hsl(var(--color-text-primary))] flex items-center justify-center shrink-0">
                       <Image
                         src={work.logo}
                         alt={`${work.company} logo`}
-                        width={48}
-                        height={48}
-                        className="w-full h-full object-contain p-1"
+                        width={56}
+                        height={56}
+                        className="w-full h-full object-contain p-1.5"
                       />
                     </div>
                     <div className="flex-1 min-w-0">

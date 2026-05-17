@@ -121,13 +121,13 @@ export function EducationSection() {
           {education.map((edu, index) => (
             <article key={index} className="project-card card-hover reveal">
               <header className="flex flex-col sm:flex-row items-start gap-5 mb-4">
-                <div className="w-14 h-14 rounded-lg overflow-hidden bg-[hsl(var(--color-bg-elevated))] border border-[hsl(var(--color-border-subtle))] flex items-center justify-center shrink-0">
+                <div className="w-14 h-14 rounded-full overflow-hidden bg-[hsl(var(--color-text-primary))] flex items-center justify-center shrink-0">
                   <Image
                     src={edu.logo}
                     alt={`${edu.institution} logo`}
                     width={56}
                     height={56}
-                    className="w-full h-full object-contain p-1"
+                    className="w-full h-full object-contain p-1.5"
                   />
                 </div>
                 <div className="flex-1 min-w-0">
