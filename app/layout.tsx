@@ -151,7 +151,7 @@ const personJsonLd = {
   ],
   sameAs: [
     "https://github.com/suryaansh2002",
-    "https://www.linkedin.com/in/suryaansh-rathinam/",
+    "https://www.linkedin.com/in/suryaanshrathinam/",
     "https://leetcode.com/suryaansh28",
   ],
   knowsAbout: [

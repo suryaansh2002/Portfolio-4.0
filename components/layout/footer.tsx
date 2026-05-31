@@ -18,7 +18,7 @@ export function Footer() {
               github
             </a>
             <a
-              href="https://www.linkedin.com/in/suryaansh-rathinam/"
+              href="https://www.linkedin.com/in/suryaanshrathinam/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-accent transition-colors"

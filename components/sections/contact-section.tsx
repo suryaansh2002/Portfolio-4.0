@@ -9,7 +9,7 @@ const socialLinks = [
   {
     name: "LinkedIn",
     icon: Linkedin,
-    url: "https://www.linkedin.com/in/suryaansh-rathinam-33a86b1b6/",
+    url: "https://www.linkedin.com/in/suryaanshrathinam/",
   },
   { name: "Email", icon: Mail, url: "mailto:suryaansh2002@gmail.com" },
   { name: "LeetCode", icon: Code, url: "https://leetcode.com/suryaansh28" },

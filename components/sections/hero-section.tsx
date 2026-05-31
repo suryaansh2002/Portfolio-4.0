@@ -97,7 +97,7 @@ export function HeroSection() {
               <button
                 aria-label="LinkedIn"
                 onClick={() =>
-                  window.open("https://www.linkedin.com/in/suryaansh-rathinam-33a86b1b6/", "_blank")
+                  window.open("https://www.linkedin.com/in/suryaanshrathinam/", "_blank")
                 }
                 className={socialIconClass}
               >
